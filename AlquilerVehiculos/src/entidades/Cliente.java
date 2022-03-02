@@ -3,6 +3,8 @@ package entidades;
 import java.io.Serializable;
 
 public class Cliente extends Persona implements Serializable {
+	
+	
 	private CarnetConducir tipoCarnet;
 	private int ntarjetaCliente;
 	
@@ -26,4 +28,9 @@ public class Cliente extends Persona implements Serializable {
 
 	}
 	
+	public Cliente(Persona persona) 
+	{
+		super(nombre, ape1, dni);
+
+	}
 }

@@ -11,7 +11,8 @@ public class Motocicletas extends Electrico{
 	//Constructores
 	public Motocicletas(String matricula, String marca, String modelo, String color, int km,
 			GregorianCalendar fechaadquisicion, Oficina oficina, Categoria categoria, int autonomia,
-			int tiemporecarga,int cilindrada, CarnetConducir carnetrequerido) {
+			int tiemporecarga,int cilindrada, CarnetConducir carnetrequerido) 
+	{
 		super(matricula, marca, modelo, color, km, fechaadquisicion, oficina, categoria, autonomia, tiemporecarga);
 		this.setCilindrada(cilindrada);
 		this.setCarnetRequerido(carnetrequerido);
