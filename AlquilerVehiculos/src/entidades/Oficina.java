@@ -1,6 +1,10 @@
 package entidades;
 
-public class Oficina {
+import java.io.Serializable;
+
+public class Oficina implements Serializable{
+	
+	private static final long serialVersionUID = 8799656478674716669L;
 
 	private int Codigo;
 	private String Descripcion;

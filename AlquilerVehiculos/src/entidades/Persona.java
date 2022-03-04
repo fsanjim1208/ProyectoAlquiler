@@ -1,10 +1,14 @@
 package entidades;
 
+import java.io.Serializable;
+
 import excepciones.LongitudInvalidaException;
 
-public abstract class Persona implements Comparable <Persona>{
+public abstract class Persona implements Comparable <Persona>,Serializable{
 
 	//propiedades
+	
+	private static final long serialVersionUID = 8799656478674716669L;
 	
 	private String Nombre;
 	private String Ape1;

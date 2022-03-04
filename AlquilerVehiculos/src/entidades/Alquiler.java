@@ -5,6 +5,8 @@ import java.util.GregorianCalendar;
 
 public class Alquiler implements Serializable {
 	
+	private static final long serialVersionUID = 8799656478674716669L;
+	
 	private Cliente cliente;
 	private Empleado empleado;
 	private Vehiculo vehiculo_alqiuilado;

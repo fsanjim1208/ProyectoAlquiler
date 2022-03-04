@@ -6,6 +6,7 @@ import excepciones.LongitudInvalidaException;
 
 public class Cliente extends Persona implements Serializable {
 	
+	private static final long serialVersionUID = 8799656478674716669L;
 	
 	private CarnetConducir tipoCarnet;
 	private int ntarjetaCliente;

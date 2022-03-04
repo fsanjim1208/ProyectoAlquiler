@@ -1,11 +1,14 @@
 package entidades;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public class Combustion extends Vehiculo {
+public class Combustion extends Vehiculo implements Serializable{
 
 
 	//Propiedades
+	
+	private static final long serialVersionUID = 8799656478674716669L;
 	
 	private String consumo;
 	private int potencia;

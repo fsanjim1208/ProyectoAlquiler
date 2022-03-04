@@ -13,6 +13,8 @@ import java.util.TreeMap;
 
 public class Empresa implements Serializable{
 	
+	private static final long serialVersionUID = 8799656478674716669L;
+	
 	private String Nombre;
 	private String NIF;
 	private TreeMap <String, Oficina> listaOficinas= new TreeMap <String, Oficina> ();
@@ -147,15 +149,17 @@ public class Empresa implements Serializable{
 	{
 		Empresa empresa= null;
 		
-		FileInputStream file= new FileInputStream ("empresa.ser");
+		
 		File f =new File ("empresa.ser");
-		ObjectInputStream input = new ObjectInputStream(file);
+		
 		
 		//Si existe el fichero lee la empresa pero si no existe la crea con el constructor minimo
 		if (f.exists())   
 		{
 			try 
 			{
+				FileInputStream file= new FileInputStream ("empresa.ser");
+				ObjectInputStream input = new ObjectInputStream(file);
 				empresa = (Empresa) input.readObject();
 			} 
 			catch (ClassNotFoundException e) 
@@ -170,6 +174,7 @@ public class Empresa implements Serializable{
 		else 
 		{
 			empresa = new Empresa("Nombre","NIF");
+			GrabaEmpresa(empresa);
 		}
 		
 		return empresa;

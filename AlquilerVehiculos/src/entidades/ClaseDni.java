@@ -6,6 +6,7 @@ public class ClaseDni implements Comparable <ClaseDni>, Serializable{
 
 	private String letraDni;
 	private int numeroDni;
+	private static final long serialVersionUID = 8799656478674716669L;
 	
 	//CONSTRUCTOR
 	

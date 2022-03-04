@@ -81,6 +81,20 @@ public class MetodosInterfazUsuario {
 		
 		return oficina;
 	}
+	public static CochesElectricos PideDatosCochesElectrico()
+	{
+		CochesElectricos coche = null;
+		
+		int autonomia = Generales.PideDatosNumericos("¿Cual es la autonomia de este vehiculo?");
+		int tiempoRecarga = Generales.PideDatosNumericos("¿Cual es el tiempo en completar una carga completa?");
+		int Nplazas = Generales.PideDatosNumericos("¿Cuantas plazas dispone este vehiculo?");
+		String tipo = Generales.PideDatosString("");
+		
+		
+		
+		return coche;
+	}
+	
 	
 	public static Vehiculo PideDatosVehiculo()
 	{
@@ -108,10 +122,10 @@ public class MetodosInterfazUsuario {
 				
 			if (eleccionUsuario == 1)
 			{
-				
+
 				do
 				{
-					System.out.println("COMBUSTIÓN");
+					Generales.SubrayaString("COMBUSTIÓN", "_");
 					System.out.println("¿Que tipo de vehiculo es?");
 					System.out.println("1-Coche");
 					System.out.println("2-Furgoneta");
@@ -119,35 +133,70 @@ public class MetodosInterfazUsuario {
 					
 					if (eleccionUsuario2 == 1)
 					{
+						String consumo = Generales.PideDatosString("¿Cual es el consumo promedio de este coche?");
+						int potencia = Generales.PideDatosNumericos("¿Que potencia dispone este coche?");
+						String nivelEmisiones = Generales.PideDatosString("¿Cual es el nivel de emision de gases promedio de este coche?");
+						int Nplazas = Generales.PideDatosNumericos("¿Cuantas plazas tiene este coche?");
+						String tipo = Generales.PideDatosString("");
 						
 					}
 					else if (eleccionUsuario2 == 2)
 					{
-
+						String consumo = Generales.PideDatosString("¿Cual es el consumo promedio de este coche?");
+						int potencia = Generales.PideDatosNumericos("¿Que potencia dispone esta furgoneta?");
+						String nivelEmisiones = Generales.PideDatosString("¿Cual es el nivel de emision de gases promedio de este coche?");
+						int CapacidadCarga = Generales.PideDatosNumericos("¿Que potencia dispone esta furgoneta?");;
+						CarnetConducir CarnetRequerido = null;
 					}
 					else
 					{
 						System.out.println("Introduzca un numero entre 1 y 2");
 					}
 					
-				} while (eleccionUsuario2<1 && eleccionUsuario2>2);
+				} while (eleccionUsuario2>=1 && eleccionUsuario2<=2);
 			}
 			else if(eleccionUsuario == 2)
 			{
 				do 
 				{
-					
+					Generales.SubrayaString("ELECTRICO", "_");
 					System.out.println("¿Que tipo de vehiculo es?");
 					System.out.println("1-Coche");
 					System.out.println("2-Motociclieta");
 					eleccionUsuario2 = Generales.PideDatosNumericos("");
-				} while (eleccionUsuario2<1 && eleccionUsuario2>2);
+					
+					if (eleccionUsuario2 == 1)
+					{
+						int autonomia = Generales.PideDatosNumericos("¿Cual es la autonomia de este vehiculo?");
+						int tiempoRecarga = Generales.PideDatosNumericos("¿Cual es el tiempo en completar una carga completa?");
+						int Nplazas = Generales.PideDatosNumericos("¿Cuantas plazas dispone este vehiculo?");
+						String tipo = Generales.PideDatosString("");	
+						
+						vehiculo = new CochesElectricos(matricula, marca, modelo, color, km, fechaadquisicion, oficina,
+															categoria, autonomia, tiempoRecarga, Nplazas, tipo);
+						
+					}
+					else if (eleccionUsuario2 == 2)
+					{
+						int autonomia = Generales.PideDatosNumericos("¿Cual es la autonomia de este vehiculo?");
+						int tiempoRecarga = Generales.PideDatosNumericos("¿Cual es el tiempo en completar una carga completa?");
+						int cilindrada = Generales.PideDatosNumericos("¿Cual es la cilindrada de est motocicleta?");
+						CarnetConducir CarnetRequerido = null;
+						vehiculo = new Motocicletas(matricula, marca, modelo, color, km, fechaadquisicion, oficina,
+													categoria, autonomia, tiempoRecarga, cilindrada, CarnetRequerido);
+					}
+					else
+					{
+						System.out.println("Introduzca un numero entre 1 y 2");
+					}
+					
+				} while (eleccionUsuario2>1 && eleccionUsuario2<2);
 			}
 			else 
 			{
 				System.out.println("Introduzca un numero entre 1 y 2");
 			}
-		}	while (eleccionUsuario<1 && eleccionUsuario>2);
+		}	while (eleccionUsuario>1 && eleccionUsuario<2);
 		return vehiculo;
 	}
 }

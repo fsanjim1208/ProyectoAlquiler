@@ -1,10 +1,14 @@
 package entidades;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public class Motocicletas extends Electrico{
+public class Motocicletas extends Electrico implements Serializable{
 
 	//Propiedades
+	
+	private static final long serialVersionUID = 8799656478674716669L;
+	
 	private int cilindrada;
 	private CarnetConducir CarnetRequerido;
 	

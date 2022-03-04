@@ -9,6 +9,9 @@ import excepciones.LongitudInvalidaException;
 public class Empleado extends Persona implements Serializable{
 	
 	//Propiedades
+	
+	private static final long serialVersionUID = 8799656478674716669L;
+	
 	private GregorianCalendar fechaAltEmpleado;
 	private Oficina OficinaEmpleado;
 

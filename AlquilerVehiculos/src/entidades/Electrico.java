@@ -9,6 +9,8 @@ public class Electrico extends Vehiculo implements Serializable{
 
 	//propiedades
 	
+	private static final long serialVersionUID = 8799656478674716669L;
+	
 	private int autonomia;
 	private int tiempoRecarga;
 	
