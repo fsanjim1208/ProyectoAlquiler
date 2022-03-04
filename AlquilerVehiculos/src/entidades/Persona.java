@@ -1,5 +1,7 @@
 package entidades;
 
+import excepciones.LongitudInvalidaException;
+
 public abstract class Persona implements Comparable <Persona>{
 
 	//propiedades
@@ -8,11 +10,19 @@ public abstract class Persona implements Comparable <Persona>{
 	private String Ape1;
 	private String Ape2;
 	private ClaseDni Dni;
-
+	
+	private int longitudNombre = 35;
+	private int longitudApe1 = 20;
+	private int longitudApe2 = 20;
+	
+	
+	
+	
+	
 	
 	//Constructores
 	
-	public Persona(String nombre, String ape1, String ape2, ClaseDni dni) {
+	public Persona(String nombre, String ape1, String ape2, ClaseDni dni) throws LongitudInvalidaException {
 		this.setDni(dni);
 		this.setNombre(nombre);
 		this.setApe1(ape1);
@@ -20,7 +30,7 @@ public abstract class Persona implements Comparable <Persona>{
 
 	}
 
-	public Persona(String nombre,String ape1,ClaseDni dni)
+	public Persona(String nombre,String ape1,ClaseDni dni) throws LongitudInvalidaException
 	{
 		this.setDni(dni);
 		this.setNombre(nombre);
@@ -37,9 +47,16 @@ public abstract class Persona implements Comparable <Persona>{
 	}
 
 
-	private void setNombre(String nombre) 
+	private void setNombre(String nombre) throws LongitudInvalidaException
 	{
-		Nombre = nombre;
+		if (nombre.length()<= longitudNombre)
+		{
+			this.Nombre = nombre;
+		}
+		else
+		{
+			throw new LongitudInvalidaException();
+		}
 	}
 
 
@@ -49,9 +66,16 @@ public abstract class Persona implements Comparable <Persona>{
 	}
 
 
-	private void setApe1(String ape1) 
+	private void setApe1(String ape1) throws LongitudInvalidaException 
 	{
-		Ape1 = ape1;
+		if (ape1.length()<= longitudApe1)
+		{
+			this.Ape1 = ape1;
+		}
+		else
+		{
+			throw new LongitudInvalidaException();
+		}
 	}
 
 
@@ -61,9 +85,16 @@ public abstract class Persona implements Comparable <Persona>{
 	}
 
 
-	public void setApe2(String ape2) 
+	public void setApe2(String ape2) throws LongitudInvalidaException 
 	{
-		Ape2 = ape2;
+		if (ape2.length()<= longitudApe2)
+		{
+			this.Ape2 = ape2;
+		}
+		else
+		{
+			throw new LongitudInvalidaException();
+		}
 	}
 
 

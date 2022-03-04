@@ -3,7 +3,7 @@ package entidades;
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public abstract class Vehiculo implements Comparable <Vehiculo>,Serializable{
+public class Vehiculo implements Comparable <Vehiculo>,Serializable{
 
 	//Propiedades
 	private String matricula;
