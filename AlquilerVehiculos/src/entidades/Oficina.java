@@ -6,7 +6,7 @@ public class Oficina implements Serializable{
 	
 	private static final long serialVersionUID = 8799656478674716669L;
 
-	private int Codigo;
+	private String Codigo;
 	private String Descripcion;
 	private String Localidad;
 	private String Provincia;
@@ -14,7 +14,7 @@ public class Oficina implements Serializable{
 	
 	
 	//CONSTRUCTORES
-	public Oficina(int codigo, String descripcion, String localidad, String provincia, Boolean oficinaAeropuerto) {
+	public Oficina(String codigo, String descripcion, String localidad, String provincia, Boolean oficinaAeropuerto) {
 		super();
 		this.setCodigo(codigo);
 		this.setDescripcion(descripcion);
@@ -25,12 +25,12 @@ public class Oficina implements Serializable{
 	
 	
 	//GETTERS AND SETTERS
-	public int getCodigo() 
+	public String getCodigo() 
 	{
 		return Codigo;
 	}
 
-	public void setCodigo(int codigo) 
+	public void setCodigo(String codigo) 
 	{
 		Codigo = codigo;
 	}

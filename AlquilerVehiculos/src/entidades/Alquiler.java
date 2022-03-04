@@ -7,6 +7,7 @@ public class Alquiler implements Serializable {
 	
 	private static final long serialVersionUID = 8799656478674716669L;
 	
+	private String codigo;
 	private Cliente cliente;
 	private Empleado empleado;
 	private Vehiculo vehiculo_alqiuilado;
@@ -16,9 +17,10 @@ public class Alquiler implements Serializable {
 	
 	//CONSTRUCTOR
 
-	public Alquiler(Cliente cliente, Empleado empleado, Vehiculo vehiculo_alqiuilado, Oficina lugar_alquiler,
+	public Alquiler(String codigo, Cliente cliente, Empleado empleado, Vehiculo vehiculo_alqiuilado, Oficina lugar_alquiler,
 			GregorianCalendar fecha_alquila, GregorianCalendar fecha_devuelve) 
 	{
+		this.setCodigo(codigo);
 		this.setCliente(cliente);
 		this.setEmpleado(empleado);
 		this.setVehiculo_alqiuilado(vehiculo_alqiuilado);
@@ -29,6 +31,7 @@ public class Alquiler implements Serializable {
 	
 	public Alquiler(Alquiler alquiler)
 	{
+		this.setCodigo(alquiler.getCodigo());
 		this.setCliente(alquiler.getCliente());
 		this.setEmpleado(alquiler.getEmpleado());
 		this.setVehiculo_alqiuilado(alquiler.getVehiculo_alqiuilado());
@@ -38,6 +41,16 @@ public class Alquiler implements Serializable {
 	}
 	
 	//GETTERS AND SETTERS
+	public String getCodigo() 
+	{
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) 
+	{
+		this.codigo = codigo;
+	}
+	
 	public Cliente getCliente() 
 	{
 		return cliente;

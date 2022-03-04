@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 
@@ -182,6 +183,22 @@ public class Empresa implements Serializable{
 	
 	
 	//Metodos
+	
+	public static Empleado BucaEmpleado(String dni,ArrayList <Empleado> e)
+	{
+		Empleado empleado = null;
+		
+		for (Empleado item : e) 
+		{
+			if(item.getDni().equals(dni))
+			{
+				empleado = item;
+				break;
+			}
+		}
+		return empleado;
+	}
+	
 	/**
 	 * Metodo que busca un empleado a partir de su DNI
 	 * @param dni String que se utiliza para buscar al empleado
@@ -193,19 +210,79 @@ public class Empresa implements Serializable{
 		return listaEmpleado.get(dni);
 	}
 	
-	public Cliente BucaCliente(String dni)
+	public static Cliente BucaCliente(String dni,ArrayList <Cliente> c)
+	{
+		Cliente cliente = null;
+		
+		for (Cliente item : c) 
+		{
+			if(item.getDni().equals(dni))
+			{
+				cliente = item;
+				break;
+			}
+		}
+		return cliente;
+	}
+	
+	public  Cliente BuscaCliente (String dni)
 	{
 		return listaCliente.get(dni);
 	}
 	
-	public Vehiculo BucaVehiculo(String matricula)
+	public static Vehiculo BucaVehiculo(String matricula, ArrayList <Vehiculo> v)
+	{
+		Vehiculo vehiculo = null;
+	
+		for (Vehiculo item : v) 
+		{
+			if(item.getMatricula().equals(matricula))
+			{
+				vehiculo = item;
+				break;
+			}
+		}
+		return vehiculo;
+	}
+	
+	public  Vehiculo BuscaVehiculo (String matricula)
 	{
 		return listaVehiculo.get(matricula);
 	}
 	
-	public Oficina BucaOficina(String matricula)
+	public static Oficina BucaOficina(String codigo,ArrayList <Oficina> o)
 	{
-		return listaOficinas.get(matricula);
+		Oficina oficina = null;
+		
+		for (Oficina item : o) 
+		{
+			if(item.getCodigo().equals(codigo))
+			{
+				oficina = item;
+				break;
+			}
+		}
+		return oficina;
+	}
+	
+	public Oficina BucaOficina(String codigo)
+	{
+		return listaOficinas.get(codigo);
+	}
+	
+	public static Alquiler BuscaAlquiler(String codigo,ArrayList <Alquiler> a)
+	{
+		Alquiler alquiler = null;
+		
+		for (Alquiler item : a) 
+		{
+			if(item.getCodigo().equals(codigo))
+			{
+				alquiler = item;
+				break;
+			}
+		}
+		return alquiler;
 	}
 	
 	public Alquiler BucaAlquileres(String matricula)
