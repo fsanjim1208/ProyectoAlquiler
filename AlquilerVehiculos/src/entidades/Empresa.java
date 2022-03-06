@@ -290,6 +290,9 @@ public class Empresa implements Serializable{
 		return listaAlquileres.get(matricula);
 	}
 	
-
+	public void AñadeVehiculos()
+	{
+		
+	}
 }
 
