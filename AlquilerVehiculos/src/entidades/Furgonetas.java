@@ -8,7 +8,7 @@ public class Furgonetas extends Combustion implements Serializable{
 
 	//Propiedades
 	
-	private static final long serialVersionUID = 8799656478674716669L;
+	private static final long serialVersionUID = 8799656478674716610L;
 	
 	private int CapacidadCarga;
 	private CarnetConducir CarnetRequerido;

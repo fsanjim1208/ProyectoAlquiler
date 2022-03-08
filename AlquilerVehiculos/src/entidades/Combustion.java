@@ -8,7 +8,7 @@ public class Combustion extends Vehiculo implements Serializable{
 
 	//Propiedades
 	
-	private static final long serialVersionUID = 8799656478674716669L;
+	private static final long serialVersionUID = 8799656478674716606L;
 	
 	private String consumo;
 	private int potencia;

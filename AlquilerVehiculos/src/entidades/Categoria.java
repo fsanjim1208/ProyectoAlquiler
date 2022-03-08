@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Categoria implements Serializable{
 
-	private static final long serialVersionUID = 8799656478674716669L;
+	private static final long serialVersionUID = 8799656478674716602L;
 	
 	//PROPIEDADES
 	private String Codigo;
@@ -49,6 +49,14 @@ public class Categoria implements Serializable{
 	{
 		this.recargo = recargo;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Categoria " + Codigo + "-" + Descripcion + " con un recargo del " + recargo + "%";
+	}
+	
+	
 
 
 	

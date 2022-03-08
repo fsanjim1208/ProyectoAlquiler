@@ -1,8 +1,10 @@
 package mismetodos;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 public class MetodosGenerales {
+	
 	
 	static Scanner lector =  new Scanner (System.in);
 	
@@ -10,20 +12,40 @@ public class MetodosGenerales {
 	{
 		int datoPedido=0;
 		
-		
-		
 		boolean valido;
 		do {
-			valido=true;
+			
 			try 
 			{
 				System.out.println(mensaje);
 				datoPedido=lector.nextInt();
+				valido=false;
 			}
 			catch  (Exception e)
 			{
 				System.out.println("un numero porfavor");
+				valido=true;
+			}
+		}while (valido);
+		return datoPedido;
+	}
+	
+	public static int PideDatosNumericos() 
+	{
+		int datoPedido=0;
+		
+		boolean valido;
+		do {
+			
+			try 
+			{
+				datoPedido=lector.nextInt();
 				valido=false;
+			}
+			catch  (Exception e)
+			{
+				System.out.println("un numero porfavor");
+				valido=true;
 			}
 		}while (valido);
 		return datoPedido;

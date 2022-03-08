@@ -1,19 +1,23 @@
 package menus;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-import metodos_personales.Generales;
+import entidades.*;
+import excepciones.LongitudInvalidaException;
+import mismetodos.MetodosGenerales;
 import mismetodos.MetodosInterfazUsuario;
 
 public class Menus {
 	
+	
 	static Scanner lector =  new Scanner (System.in);
 	
-	public static void MenuPrincipal()
+	public static void MenuPrincipal(Empresa empresa) throws LongitudInvalidaException
 	{
 		int opcionelegida = 0;
 		
-		Generales.SubrayaString("EMPRESA ALQUILER", "*");
+		MetodosGenerales.SubrayaString("EMPRESA ALQUILER", "*");
 		System.out.println("1_Mantenimiento");
 		System.out.println("2_Alquiler");
 		System.out.println("3_Listado y Consultas");
@@ -25,19 +29,19 @@ public class Menus {
 		{
 			if (opcionelegida==1)
 			{
-				MenuMantenimiento();
+				MenuMantenimiento(empresa);
 			}
 			else if (opcionelegida==2)
 			{
-				MenuAlquileres();
+				MenuAlquileres(empresa);
 			}
 			else if (opcionelegida==3)
 			{
-				MenuListados();
+				MenuListados(empresa);
 			}
 			else
 			{
-				
+				Empresa.GrabaEmpresa(empresa);
 			}
 			
 		} while (opcionelegida>4 || opcionelegida<1);
@@ -46,17 +50,18 @@ public class Menus {
 	
 	
 	
-	public static void MenuMantenimiento() 
+	public static void MenuMantenimiento(Empresa empresa) throws LongitudInvalidaException 
 	{
 		int opcionelegida=0;
 		
 		
-		Generales.SubrayaString("MANTENIMIENTO", "*");
+		MetodosGenerales.SubrayaString("MANTENIMIENTO", "*");
 		System.out.println("1_Oficinas");
 		System.out.println("2_Vehiculos");
 		System.out.println("3_Empleados");
 		System.out.println("4_Clientes");
-		System.out.println("5_Salir");
+		System.out.println("5_Categorias");
+		System.out.println("6_Salir");
 		
 		opcionelegida= lector.nextInt();
 //		lector.next();
@@ -64,25 +69,30 @@ public class Menus {
 		{
 			if (opcionelegida==1)
 			{
-				MenuMantenimientoOficinas();
+				MenuMantenimientoOficinas(empresa);
+				
 			}
 			else if (opcionelegida==2)
 			{
-				MenuMantenimientoVehiculos();
+				MenuMantenimientoVehiculos(empresa);
 			}
 			else if (opcionelegida==3)
 			{
-				MenuMantenimientoEmpleados();	
+				MenuMantenimientoEmpleados(empresa);	
 			}
 			else if (opcionelegida==4)
 			{
-				MenuMantenimientoClientes();
+				MenuMantenimientoClientes(empresa);
 			}
 			else if (opcionelegida==5)
 			{
-				MenuPrincipal();
+				MenuMantenimientoCategorias(empresa);
 			}
-			else
+			else if (opcionelegida==6)
+			{
+				MenuPrincipal(empresa);
+			}
+			else 
 			{
 				System.out.println("Valido");
 			}
@@ -90,11 +100,11 @@ public class Menus {
 		} while (opcionelegida>5 || opcionelegida<1);
 		
 	}
-	public static void MenuMantenimientoOficinas()
+	public static void MenuMantenimientoOficinas(Empresa empresa) throws LongitudInvalidaException
 	{
 		int opcionelegida=0;
 		
-		Generales.SubrayaString("OFICINA", "*");
+		MetodosGenerales.SubrayaString("OFICINA", "*");
 		System.out.println("1_Añade Oficinas");
 		System.out.println("2_Modifica Oficinas");
 		System.out.println("3_Elimina Oficinas");
@@ -103,7 +113,21 @@ public class Menus {
 		opcionelegida=lector.nextInt();
 		if (opcionelegida==1)
 		{
+			empresa.AñadeOficinas();
 			
+			System.out.println("¿Desea añadir mas oficinas?");
+			System.out.println("1_Si");
+			System.out.println("2_No");
+			int respuesta= MetodosGenerales.PideDatosNumericos("");
+			if (respuesta==1)
+			{
+				empresa.AñadeOficinas();
+			}
+			else if (respuesta ==2)
+			{
+				MenuMantenimientoOficinas(empresa);
+			}
+				
 		}
 		else if (opcionelegida==2)
 		{
@@ -111,19 +135,21 @@ public class Menus {
 		}
 		else if (opcionelegida==3)
 		{
-			
+			String codigo= MetodosGenerales.PideDatosString("¿Cual es el codigo de la oficina que desea eliminar?");
+			Oficina oficina = empresa.BuscaOficina(codigo);
+			empresa.EliminaOficina(oficina);
 		}
 		else if (opcionelegida==4) 
 		{
-			MenuMantenimiento();
+			MenuMantenimiento( empresa );
 		}
 	}
 	
-	public static void MenuMantenimientoVehiculos()
+	public static void MenuMantenimientoVehiculos(Empresa empresa) throws LongitudInvalidaException
 	{
 		int opcionelegida=0;
 		
-		Generales.SubrayaString("VEHICULOS", "*");
+		MetodosGenerales.SubrayaString("VEHICULOS", "*");
 		System.out.println("1_Añade Vehiculos");
 		System.out.println("2_Modifica Vehiculos");
 		System.out.println("3_Elimina Vehiculos");
@@ -132,7 +158,7 @@ public class Menus {
 		opcionelegida=lector.nextInt();
 		if (opcionelegida==1)
 		{
-			
+			empresa.AñadeVehiculos();
 		}
 		else if (opcionelegida==2)
 		{
@@ -140,19 +166,23 @@ public class Menus {
 		}
 		else if (opcionelegida==3)
 		{
-			
+			String matricula= MetodosGenerales.PideDatosString("¿Cual es la matricula del vehiculo que desea eliminar?");
+			Vehiculo vehiculo = empresa.BuscaVehiculo(matricula);
+			empresa.EliminaVehiculos(vehiculo);
 		}
 		else if (opcionelegida==4) 
 		{
-			MenuMantenimiento();
+			MenuMantenimiento(empresa);
 		}
 	}
 	
-	public static void MenuMantenimientoEmpleados()
+	
+	public static void MenuMantenimientoEmpleados(Empresa empresa) throws LongitudInvalidaException
 	{
 		int opcionelegida=0;
+		int opcionelegida2=0;
 		
-		Generales.SubrayaString("EMPLEADOS", "*");
+		MetodosGenerales.SubrayaString("EMPLEADOS", "*");
 		System.out.println("1_Añade Empleados");
 		System.out.println("2_Modifica Empleados");
 		System.out.println("3_Elimina Empleados");
@@ -160,8 +190,21 @@ public class Menus {
 		
 		opcionelegida=lector.nextInt();
 		if (opcionelegida==1)
-		{
+		{	
+			empresa.AñadeEmpleado();
 			
+			System.out.println("¿Desea añadir otro empleado?");
+			System.out.println("1-Sí");
+			System.out.println("2-No");
+			opcionelegida2= MetodosGenerales.PideDatosNumericos();
+			if (opcionelegida2==1)
+			{
+				empresa.AñadeEmpleado();
+			}
+			else if (opcionelegida2==2)
+			{
+				MenuMantenimiento(empresa);
+			}
 		}
 		else if (opcionelegida==2)
 		{
@@ -169,20 +212,22 @@ public class Menus {
 		}
 		else if (opcionelegida==3)
 		{
-			
+			String dni= MetodosGenerales.PideDatosString("¿Cual es el Dni del empleado que desea eliminar?");
+			Empleado empleado = empresa.BuscaEmpleado(dni);
+			empresa.EliminaEmpleado(empleado);
 		}
 		else if (opcionelegida==4) 
 		{
-			MenuMantenimiento();
+			MenuMantenimiento(empresa);
 		}
 	}
 
 
-	public static void MenuMantenimientoClientes()
+	public static void MenuMantenimientoClientes(Empresa empresa) throws LongitudInvalidaException
 	{
 		int opcionelegida=0;
 		
-		Generales.SubrayaString("CLIENTES", "*");
+		MetodosGenerales.SubrayaString("CLIENTES", "*");
 		System.out.println("1_Añade Clientes");
 		System.out.println("2_Modifica Clientes");
 		System.out.println("3_Elimina Clientes");
@@ -191,6 +236,7 @@ public class Menus {
 		opcionelegida=lector.nextInt();
 		if (opcionelegida==1)
 		{
+			empresa.AñadeClientes();
 			
 		}
 		else if (opcionelegida==2)
@@ -199,21 +245,52 @@ public class Menus {
 		}
 		else if (opcionelegida==3)
 		{
-			
+			String dni= MetodosGenerales.PideDatosString("¿Cual es el Dni del cliente que desea eliminar?");
+			Cliente cliente = empresa.BuscaCliente(dni);
+			empresa.EliminaCliente(cliente);
 		}
 		else if (opcionelegida==4) 
 		{
-			MenuMantenimiento();
+			MenuMantenimiento(empresa);
 		}
 	}
 
-
-
-	public static void MenuAlquileres() 
+	public static void MenuMantenimientoCategorias(Empresa empresa) throws LongitudInvalidaException
 	{
 		int opcionelegida=0;
 		
-		Generales.SubrayaString("ALQUILER", "*");
+		MetodosGenerales.SubrayaString("CATEGORIAS", "*");
+		System.out.println("1_Añade Categorias");
+		System.out.println("2_Modifica Categorias");
+		System.out.println("3_Elimina Categorias");
+		System.out.println("4_Salir");
+		
+		opcionelegida=lector.nextInt();
+		if (opcionelegida==1)
+		{
+			empresa.AñadeCategoria();
+		}
+		else if (opcionelegida==2)
+		{
+			
+		}
+		else if (opcionelegida==3)
+		{
+			String codigo= MetodosGenerales.PideDatosString("¿Cual es el codigo de la categoria que desea eliminar?");
+			Categoria categoria = empresa.BuscaCategoria(codigo);
+			empresa.EliminaCategoria(categoria);
+		}
+		else if (opcionelegida==4) 
+		{
+			MenuMantenimiento(empresa);
+		}
+	}
+
+	public static void MenuAlquileres(Empresa empresa) throws LongitudInvalidaException 
+	{
+		int opcionelegida=0;
+		
+		MetodosGenerales.SubrayaString("ALQUILER", "*");
 		System.out.println("1_Alquilar");
 		System.out.println("2_Devolver");
 		System.out.println("3_Salir");
@@ -232,7 +309,7 @@ public class Menus {
 			}			
 			else if (opcionelegida==3)
 			{
-				MenuPrincipal();
+				MenuPrincipal(empresa);
 			}
 			else
 			{
@@ -245,15 +322,16 @@ public class Menus {
 	
 	
 	
-	public static void MenuListados() 
+	public static void MenuListados(Empresa empresa) throws LongitudInvalidaException 
 	{
 		int opcionelegida=0;
 		
-		Generales.SubrayaString("LISTADOS Y CONSULTAS", "*");
+		MetodosGenerales.SubrayaString("LISTADOS Y CONSULTAS", "*");
 		System.out.println("1_Listado de Alquileres por fecha");
 		System.out.println("2_Listado de alquileres de un determinado vehiculo");
 		System.out.println("3_Listado del stock de vehiculos de una oficina");
-		System.out.println("4_Salir");
+		System.out.println("4_Listado de las categorias");
+		System.out.println("5_Salir");
 		
 		opcionelegida= lector.nextInt();
 //		lector.next();
@@ -261,7 +339,7 @@ public class Menus {
 		{
 			if (opcionelegida==1) 
 			{
-				
+				System.out.println(empresa.getListaEmpleado().values());
 			}
 			else if (opcionelegida==2)
 			{
@@ -273,7 +351,11 @@ public class Menus {
 			}
 			else if (opcionelegida==4)
 			{
-				MenuPrincipal();
+				
+			}
+			else if (opcionelegida==5)
+			{
+				MenuPrincipal(empresa);
 			}
 			else
 			{

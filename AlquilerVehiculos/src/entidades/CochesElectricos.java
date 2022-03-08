@@ -7,7 +7,7 @@ public class CochesElectricos extends Electrico implements Serializable{
 
 	//Propiedades
 	
-	private static final long serialVersionUID = 8799656478674716669L;
+	private static final long serialVersionUID = 8799656478674716605L;
 	
 	private int Nplazas;
 	private String tipo;

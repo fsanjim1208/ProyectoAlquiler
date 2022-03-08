@@ -7,7 +7,7 @@ public class Vehiculo implements Comparable <Vehiculo>,Serializable{
 
 	//Propiedades
 	
-	private static final long serialVersionUID = 8799656478674716669L;
+	private static final long serialVersionUID = 8799656478674716614L;
 	
 	private String matricula;
 	private String marca;

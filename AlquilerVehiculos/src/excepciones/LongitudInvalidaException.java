@@ -1,7 +1,10 @@
 package excepciones;
 
+import java.io.Serializable;
+
 public class LongitudInvalidaException extends Exception {
 
+	
 	public LongitudInvalidaException() {
 		// TODO Auto-generated constructor stub
 	}

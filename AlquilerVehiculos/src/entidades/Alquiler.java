@@ -1,11 +1,11 @@
-package entidades;
+ package entidades;
 
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 
 public class Alquiler implements Serializable {
 	
-	private static final long serialVersionUID = 8799656478674716669L;
+	private static final long serialVersionUID = 8799656478674716600L;
 	
 	private String codigo;
 	private Cliente cliente;

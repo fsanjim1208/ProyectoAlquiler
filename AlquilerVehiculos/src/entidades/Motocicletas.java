@@ -7,7 +7,7 @@ public class Motocicletas extends Electrico implements Serializable{
 
 	//Propiedades
 	
-	private static final long serialVersionUID = 8799656478674716669L;
+	private static final long serialVersionUID = 8799656478674716611L;
 	
 	private int cilindrada;
 	private CarnetConducir CarnetRequerido;

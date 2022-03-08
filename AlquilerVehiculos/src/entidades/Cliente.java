@@ -6,7 +6,7 @@ import excepciones.LongitudInvalidaException;
 
 public class Cliente extends Persona implements Serializable {
 	
-	private static final long serialVersionUID = 8799656478674716669L;
+	private static final long serialVersionUID = 8799656478674716603L;
 	
 	private CarnetConducir tipoCarnet;
 	private int ntarjetaCliente;
@@ -14,14 +14,14 @@ public class Cliente extends Persona implements Serializable {
 	
 	//Constructores
 	
-	public Cliente(String nombre, String ape1, String ape2, ClaseDni dni,CarnetConducir tipoCarnet, int ntarjetacliente) throws LongitudInvalidaException 
+	public Cliente(String nombre, String ape1, String ape2, String dni,CarnetConducir tipoCarnet, int ntarjetacliente) throws LongitudInvalidaException 
 	{
 		super(nombre, ape1, ape2, dni);
 		this.setTipoCarnet(tipoCarnet);
 		this.setNtarjetaCliente(ntarjetacliente);
 	}
 
-	public Cliente(String nombre, String ape1, ClaseDni dni,CarnetConducir tipoCarnet, int ntarjetacliente) throws LongitudInvalidaException 
+	public Cliente(String nombre, String ape1, String dni,CarnetConducir tipoCarnet, int ntarjetacliente) throws LongitudInvalidaException 
 	{
 		super(nombre, ape1, dni);
 		

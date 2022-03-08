@@ -10,19 +10,19 @@ public class Empleado extends Persona implements Serializable{
 	
 	//Propiedades
 	
-	private static final long serialVersionUID = 8799656478674716669L;
+	private static final long serialVersionUID = 8799656478674716608L;
 	
 	private GregorianCalendar fechaAltEmpleado;
 	private Oficina OficinaEmpleado;
 
 	
 
-	public Empleado(String nombre, String ape1, ClaseDni dni) throws LongitudInvalidaException {
+	public Empleado(String nombre, String ape1, String dni) throws LongitudInvalidaException {
 		super(nombre, ape1, dni);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Empleado(String nombre, String ape1, String ape2, ClaseDni dni,GregorianCalendar fechaAltEmpleado, Oficina OficinaEmpleado) throws LongitudInvalidaException {
+	public Empleado(String nombre, String ape1, String ape2, String dni,GregorianCalendar fechaAltEmpleado, Oficina OficinaEmpleado) throws LongitudInvalidaException {
 		super(nombre, ape1, ape2, dni);
 		// TODO Auto-generated constructor stub
 	}

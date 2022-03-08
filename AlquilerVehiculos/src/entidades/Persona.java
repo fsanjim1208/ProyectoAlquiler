@@ -8,12 +8,12 @@ public abstract class Persona implements Comparable <Persona>,Serializable{
 
 	//propiedades
 	
-	private static final long serialVersionUID = 8799656478674716669L;
+	private static final long serialVersionUID = 8799656478674716613L;
 	
 	private String Nombre;
 	private String Ape1;
 	private String Ape2;
-	private ClaseDni Dni;
+	private String Dni;
 	
 	private int longitudNombre = 35;
 	private int longitudApe1 = 20;
@@ -26,7 +26,7 @@ public abstract class Persona implements Comparable <Persona>,Serializable{
 	
 	//Constructores
 	
-	public Persona(String nombre, String ape1, String ape2, ClaseDni dni) throws LongitudInvalidaException {
+	public Persona(String nombre, String ape1, String ape2, String dni) throws LongitudInvalidaException {
 		this.setDni(dni);
 		this.setNombre(nombre);
 		this.setApe1(ape1);
@@ -34,7 +34,7 @@ public abstract class Persona implements Comparable <Persona>,Serializable{
 
 	}
 
-	public Persona(String nombre,String ape1,ClaseDni dni) throws LongitudInvalidaException
+	public Persona(String nombre,String ape1,String dni) throws LongitudInvalidaException
 	{
 		this.setDni(dni);
 		this.setNombre(nombre);
@@ -102,13 +102,13 @@ public abstract class Persona implements Comparable <Persona>,Serializable{
 	}
 
 
-	public ClaseDni getDni() 
+	public String getDni() 
 	{
 		return Dni;
 	}
 
 
-	private void setDni(ClaseDni dni) 
+	private void setDni(String dni) 
 	{
 		Dni = dni;
 	}

@@ -1,5 +1,6 @@
 package mismetodos;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
 import entidades.*;
@@ -8,12 +9,27 @@ import metodos_personales.*;
 
 public class MetodosInterfazUsuario {
 	
+	
+	public static Empresa PideDatosEmpresa() 
+	{
+		Empresa empresa = null;
+
+			String nombre=MetodosGenerales.PideDatosString("Introduce el nombre de la empresa");
+			String nif=MetodosGenerales.PideDatosString("Introduce el NIF de la empresa");
+			
+			
+			empresa = new Empresa(nombre, nif);
+			
+
+		return empresa;
+	}
+	
 	public static GregorianCalendar PideDatosFecha()
 	{
 		GregorianCalendar fecha = null;
-		int dia = Generales.PideDatosNumericos("Dia");
-		int mes = Generales.PideDatosNumericos("Mes");
-		int año = Generales.PideDatosNumericos("Año");
+		int dia = MetodosGenerales.PideDatosNumericos("Dia");
+		int mes = MetodosGenerales.PideDatosNumericos("Mes");
+		int año = MetodosGenerales.PideDatosNumericos("Año");
 		
 		fecha = new GregorianCalendar(dia, mes, año);
 		
@@ -23,7 +39,7 @@ public class MetodosInterfazUsuario {
 	public static Alquiler PideDatosAlquiler() throws LongitudInvalidaException 
 	{
 		Alquiler alquiler=null;
-		String codigo = Generales.PideDatosString("Introduce el codigo del alquiler");
+		String codigo = MetodosGenerales.PideDatosString("Introduce el codigo del alquiler");
 		Cliente cliente = PideDatosCliente();
 		Empleado empleado = PideDatosEmpleado();
 		Vehiculo vehiculo_alqiuilado = PideDatosVehiculo();
@@ -40,14 +56,13 @@ public class MetodosInterfazUsuario {
 	{
 		Cliente cliente= null;
 		
-		String Nombre = Generales.PideDatosString("Introduzca el nombre del empleado");
-		String Ape1 = Generales.PideDatosString("Introduzca el primer apellido del empleado");
-		String Ape2 = Generales.PideDatosString("Introduzca el segundo apellido del empleado");
-		String DNIcliente = Generales.PideDatosString("Introduzca su Dni");
-		ClaseDni Dni= new ClaseDni (DNIcliente);
+		String Nombre = MetodosGenerales.PideDatosString("Introduzca el nombre del empleado");
+		String Ape1 = MetodosGenerales.PideDatosString("Introduzca el primer apellido del empleado");
+		String Ape2 = MetodosGenerales.PideDatosString("Introduzca el segundo apellido del empleado");
+		String Dni = MetodosGenerales.PideDatosString("Introduzca su Dni");
 		
 		CarnetConducir tipoCarnet = PideDatosCarnet();
-		int ntarjetaCliente = Generales.PideDatosNumericos("Introduzca el numero de la tarjeta de cliente");
+		int ntarjetaCliente = MetodosGenerales.PideDatosNumericos("Introduzca el numero de la tarjeta de cliente");
 		
 		cliente = new Cliente(Nombre, Ape1,Ape2, Dni, tipoCarnet, ntarjetaCliente);
 		
@@ -58,29 +73,22 @@ public class MetodosInterfazUsuario {
 	{
 		CarnetConducir carnet = null;
 		
-		String letra = Generales.PideDatosString("Introduzca la letra del Carnetk");
-		String Descripcion = Generales.PideDatosString("Introduzca su Dni");
+		String letra = MetodosGenerales.PideDatosString("Introduzca la letra del Carnetk");
+		String Descripcion = MetodosGenerales.PideDatosString("Introduzca su Dni");
 		
 		carnet = new CarnetConducir(letra, Descripcion);
 		
 		return carnet;
 	}
 	
-	public static ClaseDni PideDatosDni()
-	{
-		String DNIemple = Generales.PideDatosString("Introduzca su Dni");
-		ClaseDni Dni= new ClaseDni (DNIemple);
-		return Dni;
-	}
-	
 	public static Empleado PideDatosEmpleado()
 	{
 		Empleado empleado= null;
 	
-		String Nombre = Generales.PideDatosString("Introduzca el nombre del empleado");
-		String Ape1 = Generales.PideDatosString("Introduzca el primer apellido del empleado");
-		String Ape2 = Generales.PideDatosString("Introduzca el segundo apellido del empleado");
-		ClaseDni Dni= PideDatosDni();
+		String Nombre = MetodosGenerales.PideDatosString("Introduzca el nombre del empleado");
+		String Ape1 = MetodosGenerales.PideDatosString("Introduzca el primer apellido del empleado");
+		String Ape2 = MetodosGenerales.PideDatosString("Introduzca el segundo apellido del empleado");
+		String Dni= MetodosGenerales.PideDatosString("Introduzca su Dni");
 		GregorianCalendar fechaAltEmpleado = PideDatosFecha();
 		
 		Oficina OficinaEmpleado = PideDatosOficina();
@@ -102,9 +110,9 @@ public class MetodosInterfazUsuario {
 	{
 		Categoria categoria = null;
 		
-		String Codigo = Generales.PideDatosString("Codigo de la categoria");
-		String Descripcion = Generales.PideDatosString("Codigo de la categoria");
-		int recargo = Generales.PideDatosNumericos("Introduzca el recargo");
+		String Codigo = MetodosGenerales.PideDatosString("Codigo de la categoria");
+		String Descripcion = MetodosGenerales.PideDatosString("Descripcion de la categoria");
+		int recargo = MetodosGenerales.PideDatosNumericos("Introduzca el recargo");
 		
 		categoria = new Categoria(Codigo, Descripcion, recargo);
 		
@@ -115,11 +123,28 @@ public class MetodosInterfazUsuario {
 	{
 		Oficina oficina=null;
 
-		String Codigo = Generales.PideDatosString("Introduce el Código de la oficina");
-		String Descripcion= Generales.PideDatosString("Introduzca una pequeña descripcion de su oficina");
-		String Localidad= Generales.PideDatosString("¿Dónde vive usted?");
-		String Provincia=Generales.PideDatosString("¿A que provincia pertenece?");
-		Boolean OficinaAeropuerto = true;
+		String Codigo = MetodosGenerales.PideDatosString("Introduce el Código de la oficina");
+		String Descripcion= MetodosGenerales.PideDatosString("Introduzca una pequeña descripcion de su oficina");
+		String Localidad= MetodosGenerales.PideDatosString("¿Dónde se encuentra la Oficina");
+		String Provincia=MetodosGenerales.PideDatosString("¿A que provincia pertenece?");
+		int opcion=0;
+		Boolean OficinaAeropuerto = false;
+		System.out.println("Su oficina se encuentra en el aeropuerto de su ciudad");
+		System.out.println("1-Sí");
+		System.out.println("2-no");
+		opcion=MetodosGenerales.PideDatosNumericos("");
+		if (opcion==1)
+		{
+			OficinaAeropuerto=true;
+		}
+		else if(opcion==2)
+		{
+			OficinaAeropuerto=false;
+		}
+		else
+		{
+			System.out.println("Eleccion erronea");
+		}
 		
 		oficina= new Oficina(Codigo, Descripcion, Localidad, Provincia, OficinaAeropuerto);
 		
@@ -132,11 +157,11 @@ public class MetodosInterfazUsuario {
 		
 		Vehiculo vehiculo = null;
 		
-		String matricula = Generales.PideDatosString("Introduzca la matricula del vehiculo");
-		String marca = Generales.PideDatosString("Introduzca la marca");
-		String modelo = Generales.PideDatosString("Introduza el modelo");
-		String color = Generales.PideDatosString("¿De que color es?");
-		int km = Generales.PideDatosNumericos("¿Cuantos KM tiene el coche?");
+		String matricula = MetodosGenerales.PideDatosString("Introduzca la matricula del vehiculo");
+		String marca = MetodosGenerales.PideDatosString("Introduzca la marca");
+		String modelo = MetodosGenerales.PideDatosString("Introduza el modelo");
+		String color = MetodosGenerales.PideDatosString("¿De que color es?");
+		int km = MetodosGenerales.PideDatosNumericos("¿Cuantos KM tiene el coche?");
 		GregorianCalendar fechaadquisicion = PideDatosFecha();
 		Oficina oficina= PideDatosOficina();
 		Categoria categoria = PideDatosCategoria();
@@ -149,26 +174,26 @@ public class MetodosInterfazUsuario {
 			System.out.println("¿Que tipo de motor es?");
 			System.out.println("1-Combustion");
 			System.out.println("2-Electrico");
-			eleccionUsuario = Generales.PideDatosNumericos("");
+			eleccionUsuario = MetodosGenerales.PideDatosNumericos("");
 				
 			if (eleccionUsuario == 1)
 			{
 
 				do
 				{
-					Generales.SubrayaString("COMBUSTIÓN", "_");
+					MetodosGenerales.SubrayaString("COMBUSTIÓN", "_");
 					System.out.println("¿Que tipo de vehiculo es?");
 					System.out.println("1-Coche");
 					System.out.println("2-Furgoneta");
-					eleccionUsuario2 = Generales.PideDatosNumericos("");
+					eleccionUsuario2 = MetodosGenerales.PideDatosNumericos("");
 					
 					if (eleccionUsuario2 == 1)
 					{
-						String consumo = Generales.PideDatosString("¿Cual es el consumo promedio de este coche?");
-						int potencia = Generales.PideDatosNumericos("¿Que potencia dispone este coche?");
-						String nivelEmisiones = Generales.PideDatosString("¿Cual es el nivel de emision de gases promedio de este coche?");
-						int Nplazas = Generales.PideDatosNumericos("¿Cuantas plazas tiene este coche?");
-						String tipo = Generales.PideDatosString("¿Que tipo de coche es?");
+						String consumo = MetodosGenerales.PideDatosString("¿Cual es el consumo promedio de este coche?");
+						int potencia = MetodosGenerales.PideDatosNumericos("¿Que potencia dispone este coche?");
+						String nivelEmisiones = MetodosGenerales.PideDatosString("¿Cual es el nivel de emision de gases promedio de este coche?");
+						int Nplazas = MetodosGenerales.PideDatosNumericos("¿Cuantas plazas tiene este coche?");
+						String tipo = MetodosGenerales.PideDatosString("¿Que tipo de coche es?");
 						
 						vehiculo = new CochesCombustion(matricula, marca, modelo, color, km, fechaadquisicion,
 														oficina, categoria, nivelEmisiones, Nplazas, tipo);
@@ -176,10 +201,10 @@ public class MetodosInterfazUsuario {
 					}
 					else if (eleccionUsuario2 == 2)
 					{
-						String consumo = Generales.PideDatosString("¿Cual es el consumo promedio de este coche?");
-						int potencia = Generales.PideDatosNumericos("¿Que potencia dispone esta furgoneta?");
-						String nivelEmisiones = Generales.PideDatosString("¿Cual es el nivel de emision de gases promedio de este coche?");
-						int CapacidadCarga = Generales.PideDatosNumericos("¿Que potencia dispone esta furgoneta?");;
+						String consumo = MetodosGenerales.PideDatosString("¿Cual es el consumo promedio de este coche?");
+						int potencia = MetodosGenerales.PideDatosNumericos("¿Que potencia dispone esta furgoneta?");
+						String nivelEmisiones = MetodosGenerales.PideDatosString("¿Cual es el nivel de emision de gases promedio de este coche?");
+						int CapacidadCarga = MetodosGenerales.PideDatosNumericos("¿Que potencia dispone esta furgoneta?");;
 						CarnetConducir CarnetRequerido = null;
 						
 						vehiculo = new Furgonetas(matricula, marca, modelo, color, km, fechaadquisicion, oficina,
@@ -197,18 +222,18 @@ public class MetodosInterfazUsuario {
 			{
 				do 
 				{
-					Generales.SubrayaString("ELECTRICO", "_");
+					MetodosGenerales.SubrayaString("ELECTRICO", "_");
 					System.out.println("¿Que tipo de vehiculo es?");
 					System.out.println("1-Coche");
 					System.out.println("2-Motociclieta");
-					eleccionUsuario2 = Generales.PideDatosNumericos("");
+					eleccionUsuario2 = MetodosGenerales.PideDatosNumericos("");
 					
 					if (eleccionUsuario2 == 1)
 					{
-						int autonomia = Generales.PideDatosNumericos("¿Cual es la autonomia de este vehiculo?");
-						int tiempoRecarga = Generales.PideDatosNumericos("¿Cual es el tiempo en completar una carga completa?");
-						int Nplazas = Generales.PideDatosNumericos("¿Cuantas plazas dispone este vehiculo?");
-						String tipo = Generales.PideDatosString("");	
+						int autonomia = MetodosGenerales.PideDatosNumericos("¿Cual es la autonomia de este vehiculo?");
+						int tiempoRecarga = MetodosGenerales.PideDatosNumericos("¿Cual es el tiempo en completar una carga completa?");
+						int Nplazas = MetodosGenerales.PideDatosNumericos("¿Cuantas plazas dispone este vehiculo?");
+						String tipo = MetodosGenerales.PideDatosString("");	
 						
 						vehiculo = new CochesElectricos(matricula, marca, modelo, color, km, fechaadquisicion, oficina,
 															categoria, autonomia, tiempoRecarga, Nplazas, tipo);
@@ -216,9 +241,9 @@ public class MetodosInterfazUsuario {
 					}
 					else if (eleccionUsuario2 == 2)
 					{
-						int autonomia = Generales.PideDatosNumericos("¿Cual es la autonomia de este vehiculo?");
-						int tiempoRecarga = Generales.PideDatosNumericos("¿Cual es el tiempo en completar una carga completa?");
-						int cilindrada = Generales.PideDatosNumericos("¿Cual es la cilindrada de est motocicleta?");
+						int autonomia = MetodosGenerales.PideDatosNumericos("¿Cual es la autonomia de este vehiculo?");
+						int tiempoRecarga = MetodosGenerales.PideDatosNumericos("¿Cual es el tiempo en completar una carga completa?");
+						int cilindrada = MetodosGenerales.PideDatosNumericos("¿Cual es la cilindrada de est motocicleta?");
 						CarnetConducir CarnetRequerido = null;
 						vehiculo = new Motocicletas(matricula, marca, modelo, color, km, fechaadquisicion, oficina,
 													categoria, autonomia, tiempoRecarga, cilindrada, CarnetRequerido);

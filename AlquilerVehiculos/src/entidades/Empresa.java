@@ -11,10 +11,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+import excepciones.LongitudInvalidaException;
+import mismetodos.MetodosInterfazUsuario;
+
 
 public class Empresa implements Serializable{
 	
-	private static final long serialVersionUID = 8799656478674716669L;
+	private static final long serialVersionUID = 8799656478674716609L;
 	
 	private String Nombre;
 	private String NIF;
@@ -23,6 +26,7 @@ public class Empresa implements Serializable{
 	private TreeMap <String, Cliente> listaCliente= new TreeMap <String, Cliente> ();
 	private TreeMap <String, Empleado> listaEmpleado= new TreeMap <String, Empleado> ();
 	private TreeMap <String, Alquiler> listaAlquileres = new TreeMap <String, Alquiler> ();
+	private TreeMap <String, Categoria> listaCategorias = new TreeMap <String, Categoria> ();
  
 	//crear consrtrucor con los datos minimos nombre y nif
 	
@@ -30,9 +34,13 @@ public class Empresa implements Serializable{
 	{
 		this.setNombre(Nombre);
 		this.setNIF(nif);
+		listaOficinas= new TreeMap <String, Oficina> ();
+		listaVehiculo= new TreeMap <String, Vehiculo> ();
+		listaCliente= new TreeMap <String, Cliente> ();
+		listaEmpleado= new TreeMap <String, Empleado> ();
+		listaAlquileres = new TreeMap <String, Alquiler> ();
+		listaCategorias = new TreeMap <String, Categoria> ();
 	}
-	
-	
 	
 	public Empresa(String nombre, String nif, TreeMap<String, Oficina> listaOficinas,
 			TreeMap<String, Vehiculo> listaVehiculo, TreeMap<String, Cliente> listaCliente,
@@ -118,9 +126,19 @@ public class Empresa implements Serializable{
 	{
 		this.listaAlquileres = listaAlquileres;
 	}
-
-
 	
+	public TreeMap<String, Categoria> getListaCategorias() 
+	{
+		return listaCategorias;
+	}
+
+	public void setListaCategorias(TreeMap<String, Categoria> listaCategorias) 
+	{
+		this.listaCategorias = listaCategorias;
+	}
+
+
+	//METODOS
 	// MEtodos para leer y grabar una empresa con la serializacion
 	
 
@@ -132,7 +150,7 @@ public class Empresa implements Serializable{
 		try 
 		{
 			file=new FileOutputStream("empresa.ser");
-			input=new ObjectOutputStream(input);
+			input=new ObjectOutputStream(file);
 			input.writeObject(empresa);
 		} 
 		catch (FileNotFoundException e) 
@@ -174,17 +192,16 @@ public class Empresa implements Serializable{
 		}
 		else 
 		{
-			empresa = new Empresa("Nombre","NIF");
+			empresa = MetodosInterfazUsuario.PideDatosEmpresa();
 			GrabaEmpresa(empresa);
 		}
 		
 		return empresa;
 	}
 	
+	//METODOS BUSCA OBJETOS DE TREEMAP Y DE ARRAYLIST
 	
-	//Metodos
-	
-	public static Empleado BucaEmpleado(String dni,ArrayList <Empleado> e)
+	public static Empleado BuscaEmpleado(String dni,ArrayList <Empleado> e)
 	{
 		Empleado empleado = null;
 		
@@ -205,12 +222,12 @@ public class Empresa implements Serializable{
 	 * @return Te devuelve el empleado que coincide su dni con el introducido
 	 * 			Si ese empleado no existe, te devuelve un null
 	 */
-	public Empleado BucaEmpleado(String dni)
+	public Empleado BuscaEmpleado(String dni)
 	{
 		return listaEmpleado.get(dni);
 	}
 	
-	public static Cliente BucaCliente(String dni,ArrayList <Cliente> c)
+	public static Cliente BuscaCliente(String dni,ArrayList <Cliente> c)
 	{
 		Cliente cliente = null;
 		
@@ -230,7 +247,7 @@ public class Empresa implements Serializable{
 		return listaCliente.get(dni);
 	}
 	
-	public static Vehiculo BucaVehiculo(String matricula, ArrayList <Vehiculo> v)
+	public static Vehiculo BuscaVehiculo(String matricula, ArrayList <Vehiculo> v)
 	{
 		Vehiculo vehiculo = null;
 	
@@ -250,7 +267,7 @@ public class Empresa implements Serializable{
 		return listaVehiculo.get(matricula);
 	}
 	
-	public static Oficina BucaOficina(String codigo,ArrayList <Oficina> o)
+	public static Oficina BuscaOficina(String codigo,ArrayList <Oficina> o)
 	{
 		Oficina oficina = null;
 		
@@ -265,7 +282,7 @@ public class Empresa implements Serializable{
 		return oficina;
 	}
 	
-	public Oficina BucaOficina(String codigo)
+	public Oficina BuscaOficina(String codigo)
 	{
 		return listaOficinas.get(codigo);
 	}
@@ -285,14 +302,86 @@ public class Empresa implements Serializable{
 		return alquiler;
 	}
 	
-	public Alquiler BucaAlquileres(String matricula)
+	public Alquiler BucaAlquileres(String codigo)
 	{
-		return listaAlquileres.get(matricula);
+		return listaAlquileres.get(codigo);
+	}
+	
+	public Categoria BuscaCategoria(String codigo) 
+	{
+		return listaCategorias.get(codigo);
+		
+	}
+	//METODOS AÑADE OBJETOS A TREEMAP
+	
+	public void AñadeClientes() throws LongitudInvalidaException
+	{
+		Cliente cliente=MetodosInterfazUsuario.PideDatosCliente();
+		listaCliente.put(cliente.getDni(), cliente);
+	}
+	
+	public void AñadeEmpleado()
+	{
+		Empleado empleado = MetodosInterfazUsuario.PideDatosEmpleado();
+		listaEmpleado.put(empleado.getDni(), empleado);
+	}
+	
+	public void AñadeOficinas()
+	{
+		Oficina oficina=MetodosInterfazUsuario.PideDatosOficina();
+		listaOficinas.put(oficina.getCodigo(), oficina);
 	}
 	
 	public void AñadeVehiculos()
 	{
-		
+		Vehiculo vehiculo=MetodosInterfazUsuario.PideDatosVehiculo();
+		listaVehiculo.put(vehiculo.getMatricula(), vehiculo);
 	}
+	
+	public void AñadeAquileres() throws LongitudInvalidaException
+	{
+		Alquiler alquiler=MetodosInterfazUsuario.PideDatosAlquiler();
+		listaAlquileres.put(alquiler.getCodigo(), alquiler);
+	}
+	
+	public void AñadeCategoria()
+	{
+		Categoria categoria=MetodosInterfazUsuario.PideDatosCategoria();
+		listaCategorias.put(categoria.getCodigo(), categoria);
+	}
+	
+	//METODOS ELIMINAR ELEMENTOS DE UN TREEMAP
+	
+	public void EliminaCliente(Cliente cliente)
+	{
+		listaCliente.remove(cliente.getDni());
+	}
+	
+	public void EliminaEmpleado(Empleado empleado)
+	{
+		listaEmpleado.remove(empleado.getDni());
+	}
+	
+	public void EliminaOficina(Oficina oficina)
+	{
+		listaOficinas.remove(oficina.getCodigo());
+	}
+	
+	public void EliminaAlquilere(Alquiler alquiler)
+	{
+		listaAlquileres.remove(alquiler.getCodigo());
+	}
+	
+	public void EliminaVehiculos(Vehiculo vehiculo)
+	{
+		listaVehiculo.remove(vehiculo.getMatricula());
+	}
+	
+	public void EliminaCategoria(Categoria categoria) 
+	{
+		listaCategorias.remove(categoria.getCodigo());
+	}
+	
+
 }
 
