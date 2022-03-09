@@ -78,7 +78,11 @@ public class Oficina implements Serializable{
 
 
 
-
+	@Override
+	public String toString() {
+		return Descripcion+" con codigo "+Codigo;
+	}
+	
 	
 	
 	

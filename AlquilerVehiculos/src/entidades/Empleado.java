@@ -45,6 +45,11 @@ public class Empleado extends Persona implements Serializable{
 		OficinaEmpleado = oficinaEmpleado;
 	}
 	
+	@Override
+	public String toString() {
+		return "Empleado "+ InformacionCompleta();
+	}
+	
 	
 	
 }

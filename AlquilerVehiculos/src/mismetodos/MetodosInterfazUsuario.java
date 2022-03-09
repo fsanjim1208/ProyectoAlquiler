@@ -2,6 +2,7 @@ package mismetodos;
 
 import java.io.Serializable;
 import java.util.GregorianCalendar;
+import java.util.Map.Entry;
 
 import entidades.*;
 import excepciones.LongitudInvalidaException;
@@ -24,12 +25,12 @@ public class MetodosInterfazUsuario {
 		return empresa;
 	}
 	
-	public static GregorianCalendar PideDatosFecha()
+	public static GregorianCalendar PideDatosFecha(String mensajedia, String mensajemes, String mensajeaño)
 	{
 		GregorianCalendar fecha = null;
-		int dia = MetodosGenerales.PideDatosNumericos("Dia");
-		int mes = MetodosGenerales.PideDatosNumericos("Mes");
-		int año = MetodosGenerales.PideDatosNumericos("Año");
+		int dia = MetodosGenerales.PideDatosNumericos(mensajedia);
+		int mes = MetodosGenerales.PideDatosNumericos(mensajemes);
+		int año = MetodosGenerales.PideDatosNumericos(mensajeaño);
 		
 		fecha = new GregorianCalendar(dia, mes, año);
 		
@@ -44,8 +45,8 @@ public class MetodosInterfazUsuario {
 		Empleado empleado = PideDatosEmpleado();
 		Vehiculo vehiculo_alqiuilado = PideDatosVehiculo();
 		Oficina lugar_alquiler = PideDatosOficina();
-		GregorianCalendar fecha_alquila = PideDatosFecha();
-		GregorianCalendar fecha_devuelve = PideDatosFecha();
+		GregorianCalendar fecha_alquila = PideDatosFecha("Introduzca el dia que dese alquilar el vehiculo","Introduzca el mes que dese alquilar el vehiculo","Introduzca el año que dese alquilar el vehiculo,");
+		GregorianCalendar fecha_devuelve = PideDatosFecha("Introduzca el dia que dese devolver el vehiculo","Introduzca el mes que dese devolver el vehiculo","Introduzca el año que dese devolver el vehiculo,");
 		
 		alquiler= new Alquiler(codigo, cliente, empleado, vehiculo_alqiuilado, lugar_alquiler, fecha_alquila, fecha_devuelve);
 		
@@ -89,7 +90,8 @@ public class MetodosInterfazUsuario {
 		String Ape1 = MetodosGenerales.PideDatosString("Introduzca el primer apellido del empleado");
 		String Ape2 = MetodosGenerales.PideDatosString("Introduzca el segundo apellido del empleado");
 		String Dni= MetodosGenerales.PideDatosString("Introduzca su Dni");
-		GregorianCalendar fechaAltEmpleado = PideDatosFecha();
+		System.out.println("Introduzca la fecha de alta");
+		GregorianCalendar fechaAltEmpleado = PideDatosFecha("dia","mes","año");
 		
 		Oficina OficinaEmpleado = PideDatosOficina();
 		
@@ -162,7 +164,7 @@ public class MetodosInterfazUsuario {
 		String modelo = MetodosGenerales.PideDatosString("Introduza el modelo");
 		String color = MetodosGenerales.PideDatosString("¿De que color es?");
 		int km = MetodosGenerales.PideDatosNumericos("¿Cuantos KM tiene el coche?");
-		GregorianCalendar fechaadquisicion = PideDatosFecha();
+		GregorianCalendar fechaadquisicion = PideDatosFecha("introduzca el dia de adquisicion","Introduzca el mes de adquisicion","Introduzca el año de adquision");
 		Oficina oficina= PideDatosOficina();
 		Categoria categoria = PideDatosCategoria();
 		
@@ -261,6 +263,51 @@ public class MetodosInterfazUsuario {
 			}
 		}	while (eleccionUsuario>1 && eleccionUsuario<2);
 		return vehiculo;
+	}
+	
+	public static void MostrarEmpleados (Empresa empresa)
+	{
+		for (Entry<String, Empleado> item:empresa.getListaEmpleado().entrySet())
+		{
+			Empleado empleado=item.getValue();
+			System.out.println(empleado);
+		}
+	}
+	
+	public static void MostrarClientes (Empresa empresa)
+	{
+		for (Entry<String, Cliente> item:empresa.getListaCliente().entrySet())
+		{
+			Cliente cliente=item.getValue();
+			System.out.println(cliente);
+		}
+	}
+	
+	public static void MostrarVehiculos (Empresa empresa)
+	{
+		for (Entry<String, Vehiculo> item:empresa.getListaVehiculo().entrySet())
+		{
+			Vehiculo vehiculo=item.getValue();
+			System.out.println(vehiculo);
+		}
+	}
+	
+	public static void MostrarCategorias (Empresa empresa)
+	{
+		for (Entry<String, Categoria> item:empresa.getListaCategorias().entrySet())
+		{
+			Categoria categoria=item.getValue();
+			System.out.println(categoria);
+		}
+	}
+	
+	public static void MostrarOficinas (Empresa empresa)
+	{
+		for (Entry<String, Oficina> item:empresa.getListaOficinas().entrySet())
+		{
+			Oficina oficina=item.getValue();
+			System.out.println(oficina);
+		}
 	}
 }
 

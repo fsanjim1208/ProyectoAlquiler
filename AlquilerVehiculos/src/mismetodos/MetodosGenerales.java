@@ -19,6 +19,7 @@ public class MetodosGenerales {
 			{
 				System.out.println(mensaje);
 				datoPedido=lector.nextInt();
+				lector.nextLine();
 				valido=false;
 			}
 			catch  (Exception e)
@@ -40,6 +41,7 @@ public class MetodosGenerales {
 			try 
 			{
 				datoPedido=lector.nextInt();
+				lector.nextLine();
 				valido=false;
 			}
 			catch  (Exception e)
@@ -98,6 +100,7 @@ public class MetodosGenerales {
 			subrayado = subrayado.concat(Caractersubrayar);
 		}
 		System.out.println(subrayado);
-		
 	}
+	
+	
 }

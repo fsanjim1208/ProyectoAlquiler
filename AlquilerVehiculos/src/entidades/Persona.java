@@ -122,7 +122,7 @@ public abstract class Persona implements Comparable <Persona>,Serializable{
 	
 	public String InformacionCompleta ()
 	{
-		return NombreCompleto()+", con DNI:"+this.Dni;
+		return NombreCompleto()+" con DNI:"+this.Dni;
 	}
 	
 	@Override

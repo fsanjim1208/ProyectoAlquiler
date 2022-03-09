@@ -39,12 +39,16 @@ public class Menus {
 			{
 				MenuListados(empresa);
 			}
-			else
+			else if (opcionelegida==4)
 			{
 				Empresa.GrabaEmpresa(empresa);
 			}
+			else
+			{
+				System.out.println("No valido");
+			}
 			
-		} while (opcionelegida>4 || opcionelegida<1);
+		} while (opcionelegida!=4);
 	}
 
 	
@@ -121,7 +125,17 @@ public class Menus {
 			int respuesta= MetodosGenerales.PideDatosNumericos("");
 			if (respuesta==1)
 			{
-				empresa.AñadeOficinas();
+				int respuesta1=0;
+				do 
+				{
+					empresa.AñadeOficinas();
+					System.out.println("¿Desea añadir otra oficina?");
+					System.out.println("1-Sí");
+					System.out.println("2-No");
+					respuesta1=MetodosGenerales.PideDatosNumericos();
+					
+					
+				}while (respuesta1==1);
 			}
 			else if (respuesta ==2)
 			{
@@ -158,7 +172,17 @@ public class Menus {
 		opcionelegida=lector.nextInt();
 		if (opcionelegida==1)
 		{
-			empresa.AñadeVehiculos();
+			int respuesta=0;
+			do 
+			{
+				empresa.AñadeVehiculos();
+				System.out.println("¿Desea añadir otro vehiculo?");
+				System.out.println("1-Sí");
+				System.out.println("2-No");
+				respuesta=MetodosGenerales.PideDatosNumericos();
+				
+				
+			}while (respuesta==1);
 		}
 		else if (opcionelegida==2)
 		{
@@ -199,7 +223,17 @@ public class Menus {
 			opcionelegida2= MetodosGenerales.PideDatosNumericos();
 			if (opcionelegida2==1)
 			{
-				empresa.AñadeEmpleado();
+				int respuesta=0;
+				do 
+				{
+					empresa.AñadeEmpleado();
+					System.out.println("¿Desea añadir otro empleado?");
+					System.out.println("1-Sí");
+					System.out.println("2-No");
+					respuesta=MetodosGenerales.PideDatosNumericos();
+					
+					
+				}while (respuesta==1);
 			}
 			else if (opcionelegida2==2)
 			{
@@ -236,7 +270,17 @@ public class Menus {
 		opcionelegida=lector.nextInt();
 		if (opcionelegida==1)
 		{
-			empresa.AñadeClientes();
+			int respuesta=0;
+			do 
+			{
+				empresa.AñadeClientes();
+				System.out.println("¿Desea añadir otra cliente?");
+				System.out.println("1-Sí");
+				System.out.println("2-No");
+				respuesta=MetodosGenerales.PideDatosNumericos();
+				
+				
+			}while (respuesta==1);
 			
 		}
 		else if (opcionelegida==2)
@@ -268,7 +312,17 @@ public class Menus {
 		opcionelegida=lector.nextInt();
 		if (opcionelegida==1)
 		{
-			empresa.AñadeCategoria();
+			int respuesta=0;
+			do 
+			{
+				empresa.AñadeCategoria();
+				System.out.println("¿Desea añadir otra categoria?");
+				System.out.println("1-Sí");
+				System.out.println("2-No");
+				respuesta=MetodosGenerales.PideDatosNumericos();
+				
+				
+			}while (respuesta==1);
 		}
 		else if (opcionelegida==2)
 		{
@@ -331,7 +385,10 @@ public class Menus {
 		System.out.println("2_Listado de alquileres de un determinado vehiculo");
 		System.out.println("3_Listado del stock de vehiculos de una oficina");
 		System.out.println("4_Listado de las categorias");
-		System.out.println("5_Salir");
+		System.out.println("5_Listado de las Empleados");
+		System.out.println("6_Listado de las Vehiculos");
+		System.out.println("7_Listado de las Oficinas");
+		System.out.println("8_Salir");
 		
 		opcionelegida= lector.nextInt();
 //		lector.next();
@@ -340,6 +397,7 @@ public class Menus {
 			if (opcionelegida==1) 
 			{
 				System.out.println(empresa.getListaEmpleado().values());
+				
 			}
 			else if (opcionelegida==2)
 			{
@@ -351,9 +409,25 @@ public class Menus {
 			}
 			else if (opcionelegida==4)
 			{
-				
+				MetodosInterfazUsuario.MostrarCategorias(empresa);
+				System.out.println("");
 			}
 			else if (opcionelegida==5)
+			{
+				MetodosInterfazUsuario.MostrarEmpleados(empresa);
+				System.out.println("");
+			}
+			else if (opcionelegida==6)
+			{
+				MetodosInterfazUsuario.MostrarVehiculos(empresa);
+				System.out.println("");
+			}
+			else if (opcionelegida==7)
+			{
+				MetodosInterfazUsuario.MostrarOficinas(empresa);
+				System.out.println("");
+			}
+			else if (opcionelegida==8)
 			{
 				MenuPrincipal(empresa);
 			}
@@ -362,7 +436,7 @@ public class Menus {
 				System.out.println("No valido");
 			}
 			
-		} while (opcionelegida>5 || opcionelegida<1);
+		} while (opcionelegida>7 || opcionelegida<1);
 		
 	}
 }

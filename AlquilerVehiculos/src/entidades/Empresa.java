@@ -21,12 +21,12 @@ public class Empresa implements Serializable{
 	
 	private String Nombre;
 	private String NIF;
-	private TreeMap <String, Oficina> listaOficinas= new TreeMap <String, Oficina> ();
-	private TreeMap <String, Vehiculo> listaVehiculo= new TreeMap <String, Vehiculo> ();
-	private TreeMap <String, Cliente> listaCliente= new TreeMap <String, Cliente> ();
-	private TreeMap <String, Empleado> listaEmpleado= new TreeMap <String, Empleado> ();
-	private TreeMap <String, Alquiler> listaAlquileres = new TreeMap <String, Alquiler> ();
-	private TreeMap <String, Categoria> listaCategorias = new TreeMap <String, Categoria> ();
+	private  TreeMap <String, Oficina> listaOficinas= new TreeMap <String, Oficina> ();
+	private  TreeMap <String, Vehiculo> listaVehiculo= new TreeMap <String, Vehiculo> ();
+	private  TreeMap <String, Cliente> listaCliente= new TreeMap <String, Cliente> ();
+	private  TreeMap <String, Empleado> listaEmpleado= new TreeMap <String, Empleado> ();
+	private  TreeMap <String, Alquiler> listaAlquileres = new TreeMap <String, Alquiler> ();
+	private  TreeMap <String, Categoria> listaCategorias = new TreeMap <String, Categoria> ();
  
 	//crear consrtrucor con los datos minimos nombre y nif
 	
@@ -282,7 +282,7 @@ public class Empresa implements Serializable{
 		return oficina;
 	}
 	
-	public Oficina BuscaOficina(String codigo)
+	public  Oficina BuscaOficina(String codigo)
 	{
 		return listaOficinas.get(codigo);
 	}

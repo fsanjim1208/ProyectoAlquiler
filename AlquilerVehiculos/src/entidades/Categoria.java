@@ -53,7 +53,7 @@ public class Categoria implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Categoria " + Codigo + "-" + Descripcion + " con un recargo del " + recargo + "%";
+		return "Categoria " + Descripcion + " con codigo -"+Codigo + "- con un recargo del " + recargo + "%";
 	}
 	
 	
