@@ -3,7 +3,7 @@ package entidades;
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public class Vehiculo implements Comparable <Vehiculo>,Serializable{
+public abstract class Vehiculo implements Comparable <Vehiculo>,Serializable{
 
 	//Propiedades
 	
@@ -19,7 +19,17 @@ public class Vehiculo implements Comparable <Vehiculo>,Serializable{
 	private Categoria categoria;
 
 	//Constructores
-	
+	/**
+	 * Cosntructor del objeto Vehiculo
+	 * @param matricula String unica para cada vehiculo
+	 * @param marca String marca de cada vehiculo
+	 * @param modelo String modelo de cada vehiculo
+	 * @param color String color del vehiculo
+	 * @param km in Km que tiene cada vehiculo
+	 * @param fechaadquisicion GregorianCalendar fecha de adquision del vehiculo
+	 * @param oficina Oficina Oficina en la que se encuentra el vehiculo
+	 * @param categoria Categoria Categoria a la que pertence el vehiculo
+	 */
 	public Vehiculo(String matricula, String marca, String modelo, String color,int km,GregorianCalendar fechaadquisicion, Oficina oficina, Categoria categoria) {
 		this.setMatricula(matricula);
 		this.setMarca(marca);
@@ -38,7 +48,7 @@ public class Vehiculo implements Comparable <Vehiculo>,Serializable{
 		return matricula;
 	}
 	
-	private void setMatricula(String matricula) 
+	public void setMatricula(String matricula) 
 	{
 		this.matricula = matricula;
 	}
@@ -48,7 +58,7 @@ public class Vehiculo implements Comparable <Vehiculo>,Serializable{
 		return marca;
 	}
 	
-	private void setMarca(String marca) 
+	public void setMarca(String marca) 
 	{
 		this.marca = marca;
 	}
@@ -58,7 +68,7 @@ public class Vehiculo implements Comparable <Vehiculo>,Serializable{
 		return modelo;
 	}
 	
-	private void setModelo(String modelo) 
+	public void setModelo(String modelo) 
 	{
 		this.modelo = modelo;
 	}
@@ -117,7 +127,7 @@ public class Vehiculo implements Comparable <Vehiculo>,Serializable{
 	//metodos
 	public String InformacionVehiculo()
 	{
-		return this.marca+" de color "+this.color+" con matricula "+this.matricula;
+		return this.marca+" de color "+this.color+" con matricula "+this.matricula+" y su categoria es "+this.categoria + " esta en "+this.oficina;
 	}
 	
 	@Override
@@ -138,5 +148,7 @@ public class Vehiculo implements Comparable <Vehiculo>,Serializable{
 	public int compareTo(Vehiculo o) {
 		return this.matricula.compareTo(o.matricula);
 	}
+	
+	public abstract double CalculaPrecio();
 
 }

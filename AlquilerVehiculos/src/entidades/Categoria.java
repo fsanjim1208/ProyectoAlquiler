@@ -13,6 +13,12 @@ public class Categoria implements Serializable{
 
 	
 	//CONSTRUCTORES 
+	/**
+	 * constructor del objeto Categoria
+	 * @param codigo String codigo unico para cada categoria
+	 * @param descripcion String pequeña descripccion de la categoria
+	 * @param recargo int recargo para calcular el precio del alquiler
+	 */
 	public Categoria(String codigo, String descripcion, int recargo) 
 	{
 		this.setCodigo(codigo);

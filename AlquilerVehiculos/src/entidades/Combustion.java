@@ -3,7 +3,7 @@ package entidades;
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public class Combustion extends Vehiculo implements Serializable{
+public abstract class Combustion extends Vehiculo implements Serializable{
 
 
 	//Propiedades
@@ -15,7 +15,19 @@ public class Combustion extends Vehiculo implements Serializable{
 	private String nivelEmisiones;
 	
 	//Constructores
-	
+	/**
+	 * 
+	 * Cosntructor del objeto Vehiculo
+	 * @param matricula String unica para cada vehiculo
+	 * @param marca String marca de cada vehiculo
+	 * @param modelo String modelo de cada vehiculo
+	 * @param color String color del vehiculo
+	 * @param km in Km que tiene cada vehiculo
+	 * @param fechaadquisicion GregorianCalendar fecha de adquision del vehiculo
+	 * @param oficina Oficina Oficina en la que se encuentra el vehiculo
+	 * @param categoria Categoria Categoria a la que pertence el vehiculo
+	 * @param nivelemisiones int nivel de emision que emite el vehiculo
+	 */
 	public Combustion(String matricula, String marca, String modelo, String color, int km,
 			GregorianCalendar fechaadquisicion, Oficina oficina, Categoria categoria,String nivelemisiones) 
 	{

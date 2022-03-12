@@ -9,13 +9,19 @@ public class CarnetConducir implements Serializable{
 	private String letra;
 	private String Descripcion;
 	
-	
+	//CONSTRUCTOR
+	/**
+	 * 	Constructor del objeto CarnetConducir
+	 * @param letra letra que identifica al carnet
+	 * @param descripcion pequeña descripcion del carnet
+	 */
 	public CarnetConducir(String letra, String descripcion) 
 	{
 		this.setLetra(letra);
 		this.setDescripcion(descripcion);
 	}
 
+	//GUETTERS AND SETTERS
 	public String getLetra() 
 	{
 		return letra;

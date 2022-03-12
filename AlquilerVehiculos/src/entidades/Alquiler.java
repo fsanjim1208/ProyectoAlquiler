@@ -5,6 +5,8 @@ import java.util.GregorianCalendar;
 
 public class Alquiler implements Serializable {
 	
+
+
 	private static final long serialVersionUID = 8799656478674716600L;
 	
 	private String codigo;
@@ -17,6 +19,16 @@ public class Alquiler implements Serializable {
 	
 	//CONSTRUCTOR
 
+	/**
+	 * constructor para crear un Objeto de tipo Alquiler
+	 * @param codigo String con formato "ALXX" donde las x son numeros, es unica para cada alquiler
+	 * @param cliente Objeto del tipo Cliente 
+	 * @param empleado Objeto del tipo Empleado 
+	 * @param vehiculo_alqiuilado Objeto del tipo Vehiculo 
+	 * @param lugar_alquiler Objeto del tipo Oficina 
+	 * @param fecha_alquila Objeto del tipo GregorianCalendar 
+	 * @param fecha_devuelve Objeto del tipo GregorianCalendar
+	 */
 	public Alquiler(String codigo, Cliente cliente, Empleado empleado, Vehiculo vehiculo_alqiuilado, Oficina lugar_alquiler,
 			GregorianCalendar fecha_alquila, GregorianCalendar fecha_devuelve) 
 	{
@@ -102,7 +114,7 @@ public class Alquiler implements Serializable {
 	}
 	
 	public GregorianCalendar getFecha_devuelve() 
-	{
+	{ 
 		return fecha_devuelve;
 	}
 	
@@ -111,8 +123,15 @@ public class Alquiler implements Serializable {
 		this.fecha_devuelve = fecha_devuelve;
 	}
 
-
-	
+	/**
+	 *
+	 */
+	@Override
+	public String toString() {
+		return "El codigo del alquiler es " + codigo + ", lo realizó el cliente " + cliente + " y alquiló " +  vehiculo_alqiuilado + 
+				" en la oficina " + lugar_alquiler + " el dia "; 
+				//+ fecha_alquila+ " de "+fecha_alquila+ " y lo devuelve el " + fecha_devuelve;
+	}
 	
 	
 	

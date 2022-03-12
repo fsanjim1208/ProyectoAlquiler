@@ -8,6 +8,11 @@ public class MetodosGenerales {
 	
 	static Scanner lector =  new Scanner (System.in);
 	
+	/**
+	 * Metodo que pide datos de tipo enteros
+	 * @param mensaje Mensaje de la pregunta de antes de pedir el dato
+	 * @return
+	 */
 	public static int PideDatosNumericos(String mensaje) 
 	{
 		int datoPedido=0;
@@ -20,6 +25,7 @@ public class MetodosGenerales {
 				System.out.println(mensaje);
 				datoPedido=lector.nextInt();
 				lector.nextLine();
+				
 				valido=false;
 			}
 			catch  (Exception e)
@@ -31,6 +37,10 @@ public class MetodosGenerales {
 		return datoPedido;
 	}
 	
+	/**
+	 * Metodo que pide datos de tipo enteros
+	 * @return 
+	 */
 	public static int PideDatosNumericos() 
 	{
 		int datoPedido=0;
@@ -53,6 +63,11 @@ public class MetodosGenerales {
 		return datoPedido;
 	}
 	
+	/**
+	 * Metodo que pide datos de tipo String
+	 * @param mensaje Mensaje de la pregunta de antes de pedir el dato
+	 * @return
+	 */
 	public static String PideDatosString(String mensaje)
 	{
 		String datoPedido;
@@ -62,14 +77,12 @@ public class MetodosGenerales {
 		return datoPedido;
 	}
 	
-	public static boolean PideDatosBooleanos (String mensaje)
- 	{
-		boolean datoPedido;
-		
-		System.out.println(mensaje);
-		datoPedido=lector.nextBoolean();
-		return datoPedido;
-	}
+	/**
+	 * Metodo que busca una cadena dentro de otra
+	 * @param cadena_donde_buscar String donde vamos a buscar la otra cadena
+	 * @param cadena_a_buscar String Cadena que vamos a buscar 
+	 * @return devuelve la posicion en la que s encuentra la cadena, si la cadena no se encuentra se devuelve un -1
+	 */
 	public static int busca_cadena(String cadena_donde_buscar, String cadena_a_buscar) {
 		int contador;
 		int long_a_buscar;
@@ -90,7 +103,11 @@ public class MetodosGenerales {
 		return posicion;
 	}
 	
-	
+	/**
+	 * Metodo que subraya una cadena de texto con un caracter dado
+	 * @param mensaje Cadena la cual queremos subrayar
+	 * @param Caractersubrayar Caracter con el cual vamos a subrayar
+	 */
 	public static void SubrayaString(String mensaje, String Caractersubrayar)
 	{
 		String subrayado = "";

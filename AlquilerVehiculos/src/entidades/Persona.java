@@ -25,7 +25,14 @@ public abstract class Persona implements Comparable <Persona>,Serializable{
 	
 	
 	//Constructores
-	
+	/**
+	 * constructor del Objeto Persona
+	 * @param nombre String nombre de cada persona
+	 * @param ape1 String primer apellido de la persona
+	 * @param ape2 String segundo apellido de la persona
+	 * @param dni String dni unico de cada persona
+	 * @throws LongitudInvalidaException
+	 */
 	public Persona(String nombre, String ape1, String ape2, String dni) throws LongitudInvalidaException {
 		this.setDni(dni);
 		this.setNombre(nombre);

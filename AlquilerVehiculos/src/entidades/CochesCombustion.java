@@ -14,7 +14,20 @@ public class CochesCombustion extends Combustion implements Serializable{
 
 	//Constructores
 	
-	
+	/**
+	 * Constructor del Objeto VehiculosCombustion
+	 * @param matricula String unica para cada coche
+	 * @param marca String marca de cada coche
+	 * @param modelo String modelo de cada coche
+	 * @param color String color del coche
+	 * @param km in Km que tiene cada coche
+	 * @param fechaadquisicion GregorianCalendar fecha de adquision del vehiculo
+	 * @param oficina Oficina Oficina en la que se encuentra el coche
+	 * @param categoria Categoria Categoria a la que pertence el coche
+	 * @param nivelemisiones int nivel de emisiones que emite el coche
+	 * @param numeroplazas int numero de plazas que tiene el coche
+	 * @param tipo String el tipo de coche
+	 */
 	public CochesCombustion(String matricula, String marca, String modelo, String color, int km,
 			GregorianCalendar fechaadquisicion, Oficina oficina, Categoria categoria,
 			String nivelemisiones,	int numeroplazas, String tipo) 
@@ -42,6 +55,16 @@ public class CochesCombustion extends Combustion implements Serializable{
 
 	private void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+
+
+	@Override
+	public double CalculaPrecio() {
+		double precio =0;
+		
+		
+		return precio;
 	}
 	
 	//Metodos

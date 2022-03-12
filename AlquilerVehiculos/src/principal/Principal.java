@@ -6,6 +6,7 @@ import java.util.Collections;
 import entidades.Empresa;
 import excepciones.LongitudInvalidaException;
 import mismetodos.MetodosGenerales;
+import mismetodos.MetodosInterfazUsuario;
 
 public class Principal {
 
@@ -15,9 +16,7 @@ public class Principal {
 		Empresa empresa = Empresa.LeeEmpresa();
 		
 		menus.Menus.MenuPrincipal(empresa);
-		
-//		int dato=MetodosGenerales.PideDatosNumericos("kadjnf");
-//		System.out.println(dato);
+	
 	}
 
 }
