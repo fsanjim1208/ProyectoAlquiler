@@ -31,9 +31,11 @@ public class Menus {
 		System.out.println("3 - Listado y Consultas");
 		System.out.println("4 - Salir");
 			
-		opcionelegida= MetodosGenerales.PideDatosNumericos();
+		
 		do 
 		{
+			opcionelegida= MetodosGenerales.PideDatosNumericos();
+			
 			if (opcionelegida==1)
 			{
 				MenuMantenimiento(empresa);
