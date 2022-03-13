@@ -11,7 +11,7 @@ public class Oficina implements Serializable{
 	private String Localidad;
 	private String Provincia;
 	private Boolean OficinaAeropuerto;
-	
+	private int RecargoSiaeropuerto=10;
 	
 	//CONSTRUCTORES
 	/**
@@ -85,7 +85,10 @@ public class Oficina implements Serializable{
 		OficinaAeropuerto = oficinaAeropuerto;
 	}
 
-
+	public int getRecargoSiAeoropuerto() 
+	{
+		return RecargoSiaeropuerto;
+	}
 
 	@Override
 	public String toString() {

@@ -24,17 +24,32 @@ public class Empresa implements Serializable{
 	
 	private String Nombre;
 	private String CIF;
+	//Oficinas
 	private TreeMap <String, Oficina> listaOficinas= new TreeMap <String, Oficina> ();
+	//Vehiculos
 	private TreeMap <String, Vehiculo> listaVehiculo= new TreeMap <String, Vehiculo> ();
+	private TreeMap <String, Vehiculo> listaVehiculosStock= new TreeMap <String, Vehiculo> ();
+	private ArrayList<Vehiculo> listasVehiculosStockArrayList = new ArrayList<Vehiculo>();
 	private TreeMap <String, Motocicletas> listaMotos= new TreeMap <String, Motocicletas> ();
 	private TreeMap <String, Furgonetas> listaFurgonetas= new TreeMap <String, Furgonetas> ();
 	private TreeMap <String, CochesElectricos> listaCochesElectricos= new TreeMap <String, CochesElectricos> ();
 	private TreeMap <String, CochesCombustion> listaCochesCombustion= new TreeMap <String, CochesCombustion> ();
+	//Clientes
 	private TreeMap <String, Cliente> listaCliente= new TreeMap <String, Cliente> ();
+	//Empleados
 	private TreeMap <String, Empleado> listaEmpleado= new TreeMap <String, Empleado> ();
+	//Alquileres
 	private TreeMap <String, Alquiler> listaAlquileres = new TreeMap <String, Alquiler> ();
+	private TreeMap <String, Alquiler> listaAlquileresActivos = new TreeMap <String, Alquiler> ();
+	private TreeMap <String, Alquiler> listaDevoluciones = new TreeMap <String, Alquiler> ();
+	//Categorias
 	private TreeMap <String, Categoria> listaCategorias = new TreeMap <String, Categoria> ();
+	//TiposVehiculos
 	private ArrayList<String> listasTipodeCoche = new ArrayList<String>();
+	//TiposDeCarnet
+	private ArrayList<CarnetConducir> listasCarnet = new ArrayList<CarnetConducir>();
+	
+	
 	
 	//crear consrtructor con los datos minimos nombre y nif
 	
@@ -49,6 +64,8 @@ public class Empresa implements Serializable{
 		this.setCIF(cif);
 		listaOficinas= new TreeMap <String, Oficina> ();
 		listaVehiculo= new TreeMap <String, Vehiculo> ();
+		listaVehiculosStock= new TreeMap <String, Vehiculo> ();
+		listasVehiculosStockArrayList = new ArrayList<Vehiculo>();
 		listaMotos= new TreeMap <String, Motocicletas> ();
 		listaFurgonetas= new TreeMap <String, Furgonetas> ();
 		listaCochesElectricos= new TreeMap <String, CochesElectricos> ();
@@ -56,10 +73,15 @@ public class Empresa implements Serializable{
 		listaCliente= new TreeMap <String, Cliente> ();
 		listaEmpleado= new TreeMap <String, Empleado> ();
 		listaAlquileres = new TreeMap <String, Alquiler> ();
+		listaAlquileresActivos = new TreeMap <String, Alquiler> ();
+		listaDevoluciones = new TreeMap <String, Alquiler> ();
 		listaCategorias = new TreeMap <String, Categoria> ();
 		listasTipodeCoche = new ArrayList<String>();
+		listasCarnet = new ArrayList<CarnetConducir>();
 	}
 	
+
+
 	public Empresa(String nombre, String cif, TreeMap<String, Oficina> listaOficinas,
 			TreeMap<String, Vehiculo> listaVehiculo, TreeMap<String, Cliente> listaCliente,
 			TreeMap<String, Empleado> listaEmpleado, TreeMap<String, Alquiler> listaAlquileres) 
@@ -113,6 +135,21 @@ public class Empresa implements Serializable{
 	public void setListaVehiculo(TreeMap<String, Vehiculo> listaVehiculo) 
 	{
 		this.listaVehiculo = listaVehiculo;
+	}
+	
+	public TreeMap<String, Vehiculo> getListaVehiculosstock() 
+	{
+		return listaVehiculosStock;
+	}
+
+	public void setListaVehiculosStock(TreeMap<String, Vehiculo> listaVehiculosStock) 
+	{
+		this.listaVehiculosStock = listaVehiculosStock;
+	}
+	
+	public ArrayList<Vehiculo> getlistasVehiculosStockArrayList() 
+	{
+		return listasVehiculosStockArrayList;
 	}
 	
 	public TreeMap<String, Motocicletas> getListaMotocicletas() 
@@ -203,6 +240,61 @@ public class Empresa implements Serializable{
 	public void setTipodeCoche(ArrayList<String> listastipodeCoche) 
 	{
 		listasTipodeCoche = listastipodeCoche;
+	}
+	public ArrayList<Vehiculo> getListasVehiculosStockArrayList() {
+		return listasVehiculosStockArrayList;
+	}
+
+	public void setListasVehiculosStockArrayList(ArrayList<Vehiculo> listasVehiculosStockArrayList) {
+		this.listasVehiculosStockArrayList = listasVehiculosStockArrayList;
+	}
+
+	public TreeMap<String, Motocicletas> getListaMotos() {
+		return listaMotos;
+	}
+
+	public void setListaMotos(TreeMap<String, Motocicletas> listaMotos) {
+		this.listaMotos = listaMotos;
+	}
+
+	public TreeMap<String, Alquiler> getListaAlquileresActivos() {
+		return listaAlquileresActivos;
+	}
+
+	public void setListaAlquileresActivos(TreeMap<String, Alquiler> listaAlquileresActivos) {
+		this.listaAlquileresActivos = listaAlquileresActivos;
+	}
+
+	public TreeMap<String, Alquiler> getListaDevoluciones() {
+		return listaDevoluciones;
+	}
+
+	public void setListaDevoluciones(TreeMap<String, Alquiler> listaDevoluciones) {
+		this.listaDevoluciones = listaDevoluciones;
+	}
+
+	public ArrayList<String> getListasTipodeCoche() {
+		return listasTipodeCoche;
+	}
+
+	public void setListasTipodeCoche(ArrayList<String> listasTipodeCoche) {
+		this.listasTipodeCoche = listasTipodeCoche;
+	}
+
+	public ArrayList<CarnetConducir> getListasCarnet() {
+		return listasCarnet;
+	}
+
+	public void setListasCarnet(ArrayList<CarnetConducir> listasCarnet) {
+		this.listasCarnet = listasCarnet;
+	}
+
+	public TreeMap<String, Vehiculo> getListaVehiculosStock() {
+		return listaVehiculosStock;
+	}
+
+	public void setListaFurgonetas(TreeMap<String, Furgonetas> listaFurgonetas) {
+		this.listaFurgonetas = listaFurgonetas;
 	}
 
 
@@ -329,6 +421,47 @@ public class Empresa implements Serializable{
 	{
 		return listaVehiculo.get(matricula);
 	}
+	
+	/**
+	 * Metodo que busca un vehiculo a partir de su matricula
+	 * @param matricula String que se utiliza para buscar al vehiculo
+	 * @return Te devuelve el vehiculo que coincide su matricula con la introducida
+	 * 			Si ese vehiculo no existe, te devuelve un null
+	 */
+	public  Vehiculo BuscaVehiculoenStock (String matricula)
+	{
+		return listaVehiculosStock.get(matricula);
+	}
+	
+	public static Vehiculo BuscaVehiculoenStockenArrayListporOficina(Oficina oficina,ArrayList <Vehiculo> v)
+	{
+		Vehiculo vehiculo = null;
+		
+		for (Vehiculo item : v) 
+		{
+			if(item.getOficina() == (oficina))
+			{
+				vehiculo = item;
+				break;
+			}
+		}
+		return vehiculo;
+	}
+	
+	public static Vehiculo BuscaVehiculoenStockenArrayListporCategoria(Categoria categoria,ArrayList <Vehiculo> v)
+	{
+		Vehiculo vehiculo = null;
+		
+		for (Vehiculo item : v) 
+		{
+			if(item.getCategoria() == (categoria))
+			{
+				vehiculo = item;
+				break;
+			}
+		}
+		return vehiculo;
+	}
 
 	/**
 	 * Metodo que busca una oficina a partir de su codigo
@@ -404,6 +537,12 @@ public class Empresa implements Serializable{
 		listaOficinas.put(oficina.getCodigo(), oficina);
 	}
 	
+	public void AñadeOficinas(String codigo)
+	{
+		Oficina oficina=MetodosInterfazUsuario.PideDatosOficina(codigo);
+		listaOficinas.put(oficina.getCodigo(), oficina);
+	}
+	
 	/**
 	 * Metodo que añade al TreeMap ListaOficina una Oficina
 	 * @param oficina Objeto del tipo oficina,el cual sera añadido.
@@ -420,8 +559,46 @@ public class Empresa implements Serializable{
 	public void AñadeVehiculos(Empresa empresa)
 	{
 		Vehiculo vehiculo=MetodosInterfazUsuario.PideDatosVehiculo(empresa);
+		
 		listaVehiculo.put(vehiculo.getMatricula(), vehiculo);
+		
+		AñadeVehiculosStockArrayList(vehiculo);
 	}
+	
+	/**
+	 * Metodo que pide todos los datos para crear un vehiculo y aladirlo al TreeMap ListaVehiculos
+	 * @param empresa Objeto de tipo empresa, necesario para pedir ciertos datos
+	 */
+	public void AñadeVehiculosaStock(Vehiculo vehiculo)
+	{
+		listaVehiculosStock.put(vehiculo.getMatricula(), vehiculo);
+	}
+	
+	public void AñadeVehiculosStockArrayList(Vehiculo vehiculo)
+	{
+		listasVehiculosStockArrayList.add(vehiculo);	
+	}
+	
+	public void AñadeCochesCombustion(Empresa empresa, CochesCombustion vehiculo)
+	{
+		listaCochesCombustion.put(vehiculo.getMatricula(), vehiculo);
+	}
+	
+	public void AñadeCochesElectricos(Empresa empresa, CochesElectricos vehiculo)
+	{
+		listaCochesElectricos.put(vehiculo.getMatricula(), vehiculo);
+	}
+	
+	public void AñadeMotos(Empresa empresa, Motocicletas vehiculo)
+	{
+		listaMotos.put(vehiculo.getMatricula(), vehiculo);
+	}
+	
+	public void AñadeFurgonetas(Empresa empresa, Furgonetas vehiculo)
+	{
+		getListaFurgonetas().put(vehiculo.getMatricula(), vehiculo);
+	}
+	
 	
 	/**
 	 * Metodo que pide todos los datos para crear un alquiler y lo añade al TreeMap Listaalquileres
@@ -432,6 +609,13 @@ public class Empresa implements Serializable{
 	{
 		Alquiler alquiler=MetodosInterfazUsuario.PideDatosAlquiler(empresa);
 		listaAlquileres.put(alquiler.getCodigo(), alquiler);
+		
+		AñadeAquileresActivos(alquiler);
+	}
+	
+	public void AñadeAquileresActivos(Alquiler alquiler) throws LongitudInvalidaException
+	{
+		listaAlquileresActivos.put(alquiler.getCodigo(), alquiler);
 	}
 	
 	/**
@@ -453,12 +637,10 @@ public class Empresa implements Serializable{
 	}
 	
 	
-	
 	public void AñadeTipoCoche()
 	{
 		String TipoCoche=MetodosGenerales.PideDatosString("Introduzca el tipo de vehiculo");
-		listasTipodeCoche.add(TipoCoche);
-		
+		listasTipodeCoche.add(TipoCoche);	
 	}
 	
 	public void AñadeTipoCoche(String tipocoche)
@@ -503,6 +685,10 @@ public class Empresa implements Serializable{
 		listaAlquileres.remove(alquiler.getCodigo());
 	}
 	
+	public void EliminaAlquilerActivo(Alquiler alquiler)
+	{
+		listaAlquileresActivos.remove(alquiler);
+	}
 	/**
 	 * Metodo que elimina un vehiculo determinado de su TreeMap correspondiente
 	 * @param veciculo Objeto de tipo Vehiculo, el cual sera eliminado.
@@ -510,6 +696,20 @@ public class Empresa implements Serializable{
 	public void EliminaVehiculos(Vehiculo vehiculo)
 	{
 		listaVehiculo.remove(vehiculo.getMatricula());
+	}
+	
+	/**
+	 * Metodo que elimina un vehiculo determinado de su TreeMap correspondiente
+	 * @param veciculo Objeto de tipo Vehiculo, el cual sera eliminado.
+	 */
+	public void EliminaVehiculosdeStock(Vehiculo vehiculo)
+	{
+		listaVehiculosStock.remove(vehiculo.getMatricula());
+	}
+	
+	public void EliminaVehiculosdeStockArrayList(Vehiculo vehiculo, int i)
+	{
+		listasVehiculosStockArrayList.remove(i);
 	}
 	
 	/**
@@ -619,13 +819,49 @@ public class Empresa implements Serializable{
 			{
 				System.out.println("Coche Electrico modificada");
 			}
-						
-					 
-					 
-					 
+				 
 		}while (respuesta==4);
 	}
 	
+	
+	//TODO CORREGIR EL METODO COPIA Y PEGA DEL SUPERIOR
+	public void ModificarOficina(Empresa empresa) throws LongitudInvalidaException
+	{
+		String codigo=MetodosGenerales.PideDatosString("Cual es el codigo de la oficina que desea modificar?");
+		
+		System.out.println("¿Que desea modificar?");
+		System.out.println("1 - Codigo");
+		System.out.println("2 - Descripcion");
+		System.out.println("3 - Recargo");
+		System.out.println("4 - Salir");
+		int respuesta = MetodosGenerales.PideDatosNumericos();
+			 if(respuesta==1)
+			 {
+				 	
+				 	String codigonuevo=MetodosGenerales.PideDatosString("Cual es el nuevo codigo?");
+					getListaCategorias().get(codigo).setCodigo(codigonuevo);
+			 }
+			 else if (respuesta==2)
+			 {
+				 	String descripcionueva=MetodosGenerales.PideDatosString("Cual es la nueva descripcion?");
+					getListaCategorias().get(codigo).setDescripcion(descripcionueva);
+			 }
+			 else if (respuesta==3)
+			 {
+				 	int recargonuevo=MetodosGenerales.PideDatosNumericos("Cual es el nuevo recargo?");
+					getListaCategorias().get(codigo).setRecargo(recargonuevo);
+			 }
+
+			 else if (respuesta==4)
+			 {
+				 Menus.MenuMantenimientoCategorias(empresa);
+			 }
+
+			 else 
+			 {
+				 
+			 }
+	}
 
 	
 

@@ -19,7 +19,7 @@ public class MetodosInterfazUsuario {
 		Empresa empresa = null;
 
 			String nombre=MetodosGenerales.PideDatosString("Introduce el nombre de la empresa");
-			String nif=MetodosGenerales.PideDatosString("Introduce el NIF de la empresa");
+			String nif=MetodosGenerales.PideDatosString("Introduce el CIF de la empresa");
 			
 			
 			empresa = new Empresa(nombre, nif);
@@ -57,7 +57,6 @@ public class MetodosInterfazUsuario {
 	{
 		Alquiler alquiler=null;
 		
-		MetodosGenerales.SubrayaString("Nuestros empleados", "=");
 		MostrarEmpleados(empresa);		
 		String Dni_emple = MetodosGenerales.PideDatosString("Introduzca el Dni del empleado");
 		Empleado empleado=empresa.getListaEmpleado().get(Dni_emple);
@@ -65,28 +64,89 @@ public class MetodosInterfazUsuario {
 		
 		String codigo = MetodosGenerales.PideDatosString("Introduce el codigo del alquiler");
 
+		System.out.println("¿Como desea ver los vehiculos?");
+		System.out.println("1 - Por oficina");
+		System.out.println("2 - Por categoria");
 		
-		MetodosGenerales.SubrayaString("Nuestros Vehiculos disponibles", "=");
-		MostrarVehiculos(empresa);
+		int respuesta = MetodosGenerales.PideDatosNumericos();
+		String respuesta2="";
+		
+		if (respuesta == 1)
+		{
+			MostrarOficinas(empresa);
+			respuesta2 = MetodosGenerales.PideDatosString("Introduzca el codigo de la oficna");
+			
+			Oficina oficina2 = empresa.BuscaOficina(respuesta2);
+			
+			 for(int i = 0; i < empresa.getlistasVehiculosStockArrayList().size(); i++) 
+		        {
+		            if (empresa.getlistasVehiculosStockArrayList().get(i).getOficina()==oficina2)
+		            {
+		            	System.out.println(empresa.getlistasVehiculosStockArrayList().get(i));
+		            }
+		        }
+		}
+		else if (respuesta == 2)
+		{
+			MostrarCategorias(empresa);
+			respuesta2 = MetodosGenerales.PideDatosString("Introduzca el codigo de la categoria");
+			
+			Categoria categoria2 = empresa.BuscaCategoria(respuesta2);
+			
+			 for(int i = 0; i < empresa.getlistasVehiculosStockArrayList().size(); i++) 
+		        {
+		            if (empresa.getlistasVehiculosStockArrayList().get(i).getCategoria()==categoria2)
+		            {
+		            	System.out.println(empresa.getlistasVehiculosStockArrayList().get(i));
+		            }
+		        }
+		}
 		
 		String matricula = MetodosGenerales.PideDatosString("Introduzca la matricula deseada");
-		Vehiculo vehiculo_alquilado=empresa.getListaVehiculo().get(matricula);		
-		MetodosGenerales.SubrayaString("Nuestros Oficinas", "=");
-		MostrarOficinas(empresa);
 		
-		String codigooficina = MetodosGenerales.PideDatosString("¿Donde desea alquilar su vehiculo?");
-		Oficina lugar_alquiler=empresa.getListaOficinas().get(codigooficina);
-
+		Vehiculo vehiculo_alquilado= null;	
+		Oficina lugar_alquiler = null;
 		
+		 for(int i = 0; i < empresa.getlistasVehiculosStockArrayList().size(); i++) 
+	        {
+	            if (empresa.getlistasVehiculosStockArrayList().get(i).getMatricula().equals(matricula))
+	            {
+	            	vehiculo_alquilado = empresa.getlistasVehiculosStockArrayList().get(i);
+	            	lugar_alquiler=empresa.getlistasVehiculosStockArrayList().get(i).getOficina();
+	            	empresa.EliminaVehiculosdeStockArrayList(vehiculo_alquilado,i);
+	            }
+	        }
+	
 		GregorianCalendar fecha_alquila = PideDatosFecha("Introduzca el dia que dese alquilar el vehiculo","Introduzca el mes que dese alquilar el vehiculo","Introduzca el año que dese alquilar el vehiculo,");
 		GregorianCalendar fecha_devuelve = PideDatosFecha("Introduzca el dia que dese devolver el vehiculo","Introduzca el mes que dese devolver el vehiculo","Introduzca el año que dese devolver el vehiculo,");
 		
 		
 		Cliente cliente=PideDatosCliente();
 		empresa.AñadeClientes(cliente);
-		alquiler= new Alquiler(codigo, cliente, empleado, vehiculo_alquilado, lugar_alquiler, fecha_alquila, fecha_devuelve);
+		
+		long FechaInicioAlquilerEnMiliSegundos= fecha_alquila.getTimeInMillis();
+		long FechaFinAlquilerEnMiliSegundos= fecha_devuelve.getTimeInMillis();
+		
+		int DiasAlquilado=(int)((Math.abs(FechaFinAlquilerEnMiliSegundos-FechaInicioAlquilerEnMiliSegundos))/(1000*60*6024));
+		
+		double precio= vehiculo_alquilado.CalculaPrecio(DiasAlquilado);
+		
+		alquiler= new Alquiler(codigo, cliente, empleado, vehiculo_alquilado, lugar_alquiler, fecha_alquila, fecha_devuelve, DiasAlquilado, precio);
+		
+		
 		
 		return alquiler;
+	}
+	
+	public static Alquiler PideDatosDevoluciones (Empresa empresa)
+	{
+		MostrarAlquileresActivos(empresa);
+		
+		String codigoalquiler= MetodosGenerales.PideDatosString("Introduzca el codigo del alquiler que va a finalizar");
+		
+		Alquiler alquiler_finalizado= empresa.getListaAlquileres().get(codigoalquiler);
+		
+ 		return alquiler_finalizado;
 	}
 
 	/**
@@ -94,7 +154,7 @@ public class MetodosInterfazUsuario {
 	 * @return Nos devuelve un objeto de tipo Cliente
 	 * @throws LongitudInvalidaException
 	 */
-	public static Cliente PideDatosCliente() throws LongitudInvalidaException
+	public static Cliente PideDatosCliente() 
 	{
 		Cliente cliente= null;
 		
@@ -106,7 +166,12 @@ public class MetodosInterfazUsuario {
 		CarnetConducir tipoCarnet = PideDatosCarnet();
 		int ntarjetaCliente = MetodosGenerales.PideDatosNumericos("Introduzca el numero de la tarjeta de cliente");
 		
-		cliente = new Cliente(Nombre, Ape1,Ape2, Dni, tipoCarnet, ntarjetaCliente);
+		try {
+			cliente = new Cliente(Nombre, Ape1,Ape2, Dni, tipoCarnet, ntarjetaCliente);
+		} catch (LongitudInvalidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return cliente;
 	}
@@ -143,7 +208,6 @@ public class MetodosInterfazUsuario {
 		System.out.println("Introduzca la fecha de alta");
 		GregorianCalendar fechaAltEmpleado = PideDatosFecha("dia","mes","año");
 		
-		MetodosGenerales.SubrayaString("Estas son nuestras Oficinas", "=");
 		MostrarOficinas(empresa);
 		
 		String codigoOficina= MetodosGenerales.PideDatosString("Introduzca el codigo de la oficina, si no existe en la lista anterior, introduzca el codigo de la nueva oficina");
@@ -153,7 +217,7 @@ public class MetodosInterfazUsuario {
 			
 		if (empresa.getListaOficinas().get(codigoOficina)==null)	
 		{
-			empresa.AñadeOficinas(empresa.getListaOficinas().get(codigoOficina));
+			empresa.AñadeOficinas(codigoOficina);;
 		}
 		else
 		{
@@ -286,7 +350,7 @@ public class MetodosInterfazUsuario {
 	public static Vehiculo PideDatosVehiculo(Empresa empresa)
 	{
 		
-		Vehiculo vehiculo = null;
+		Vehiculo vehiculo =null;
 		
 		String matricula = MetodosGenerales.PideDatosString("Introduzca la matricula del vehiculo");
 		String marca = MetodosGenerales.PideDatosString("Introduzca la marca");
@@ -295,7 +359,7 @@ public class MetodosInterfazUsuario {
 		int km = MetodosGenerales.PideDatosNumericos("¿Cuantos KM tiene el coche?");
 		GregorianCalendar fechaadquisicion = PideDatosFecha("introduzca el dia de adquisicion","Introduzca el mes de adquisicion","Introduzca el año de adquision");
 		
-		MetodosGenerales.SubrayaString("Estas son nuestras Oficinas", "=");
+		
 		MostrarOficinas(empresa);
 		
 		String codigoOficina= MetodosGenerales.PideDatosString("Introduzca el codigo de la oficina, si no existe en la lista anterior, introduzca el codigo de la nueva oficina");
@@ -313,7 +377,7 @@ public class MetodosInterfazUsuario {
 		}
 			
 		
-		MetodosGenerales.SubrayaString("Estas son las categorias", "=");
+
 		MostrarCategorias(empresa);
 		
 		String codigoCategoria= MetodosGenerales.PideDatosString("Introduzca el codigo de la Categoria");
@@ -405,6 +469,10 @@ public class MetodosInterfazUsuario {
 						
 						vehiculo = new CochesCombustion(matricula, marca, modelo, color, km, fechaadquisicion,
 														oficina, categoria, nivelEmisiones, Nplazas, tipo);
+						
+						
+						
+						
 						
 					}
 					else if (eleccionUsuario2 == 2)
@@ -564,6 +632,32 @@ public class MetodosInterfazUsuario {
 	}
 	
 	/**
+	 * Metodo que muestra todoso los elementos que hay dentro del TreeMap de Vehiculos
+	 * @param empresa elemento del objeto Empresa
+	 */
+	public static void MostrarVehiculosStock (Empresa empresa)
+	{
+		MetodosGenerales.SubrayaString("Nuestros vehiculos en Stock", "*");
+		
+		for (Entry<String, Vehiculo> item:empresa.getListaVehiculosstock().entrySet())
+		{
+			Vehiculo vehiculo=item.getValue();
+			System.out.println(vehiculo);
+		} 
+	}
+	
+	public static void MostrarCochesCombustion (Empresa empresa)
+	{
+		MetodosGenerales.SubrayaString("Nuestros coches de combustion", "*");
+		
+		for (Entry<String, CochesCombustion> item:empresa.getListaCochesCombustion().entrySet())
+		{
+			CochesCombustion vehiculo=item.getValue();
+			System.out.println(vehiculo);
+		} 
+	}
+	
+	/**
 	 * Metodo que muestra todoso los elementos que hay dentro del TreeMap de Categorias
 	 * @param empresa elemento del objeto Empresa
 	 */
@@ -599,6 +693,16 @@ public class MetodosInterfazUsuario {
 	{
 		MetodosGenerales.SubrayaString("Nuestros alquileres", "*");
 		for (Entry<String, Alquiler> item:empresa.getListaAlquileres().entrySet())
+		{
+			Alquiler alquiler=item.getValue();
+			System.out.println(alquiler);
+		}
+	}
+	
+	public static void MostrarAlquileresActivos (Empresa empresa)
+	{
+		MetodosGenerales.SubrayaString("Alquileres Activos", "*");
+		for (Entry<String, Alquiler> item:empresa.getListaAlquileresActivos().entrySet())
 		{
 			Alquiler alquiler=item.getValue();
 			System.out.println(alquiler);

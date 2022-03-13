@@ -41,6 +41,17 @@ public abstract class Vehiculo implements Comparable <Vehiculo>,Serializable{
 		this.setCategoria(categoria);
 	}
 	
+	public Vehiculo(Vehiculo a)
+	{
+		this.setMatricula(a.getMatricula());
+		this.setMarca(a.getMarca());
+		this.setModelo(a.getModelo());
+		this.setColor(a.getColor());
+		this.setKm(a.getKm());
+		this.setFechaadquisicion(a.getFechaadquisicion());
+		this.setOficina(a.getOficina());
+		this.setCategoria(a.getCategoria());
+	}
 	//Getters and Setters
 	
 	public String getMatricula() 
@@ -78,7 +89,7 @@ public abstract class Vehiculo implements Comparable <Vehiculo>,Serializable{
 		return color;
 	}
 	
-	private void setColor(String color) 
+	public void setColor(String color) 
 	{
 		this.color = color;
 	}
@@ -98,7 +109,7 @@ public abstract class Vehiculo implements Comparable <Vehiculo>,Serializable{
 		return fechaadquisicion;
 	}
 	
-	private void setFechaadquisicion(GregorianCalendar fechaadquisicion) 
+	public void setFechaadquisicion(GregorianCalendar fechaadquisicion) 
 	{
 		this.fechaadquisicion = fechaadquisicion;
 	}
@@ -118,7 +129,7 @@ public abstract class Vehiculo implements Comparable <Vehiculo>,Serializable{
 		return categoria;
 	}
 	
-	private void setCategoria(Categoria categoria) 
+	public void setCategoria(Categoria categoria) 
 	{
 		this.categoria = categoria;
 	}
@@ -149,6 +160,6 @@ public abstract class Vehiculo implements Comparable <Vehiculo>,Serializable{
 		return this.matricula.compareTo(o.matricula);
 	}
 	
-	public abstract double CalculaPrecio();
+	public abstract double CalculaPrecio(int diasalquilado);
 
 }

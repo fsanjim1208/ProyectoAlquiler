@@ -3,6 +3,7 @@ package entidades;
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 
+
 public class CochesCombustion extends Combustion implements Serializable{
 
 	//Propiedades
@@ -11,6 +12,7 @@ public class CochesCombustion extends Combustion implements Serializable{
 	
 	private int Nplazas;
 	private String tipo;
+	private int preciobase=50;
 
 	//Constructores
 	
@@ -60,12 +62,21 @@ public class CochesCombustion extends Combustion implements Serializable{
 
 
 	@Override
-	public double CalculaPrecio() {
-		double precio =0;
+	public double CalculaPrecio(int diasalquilado) {
+		double precio=preciobase+((preciobase*getCategoria().getRecargo())/100);
 		
+		if (getOficina().getOficinaAeropuerto())
+		{
+			precio=precio+((precio*getOficina().getRecargoSiAeoropuerto())/100);
+		}
 		
+		precio= precio * diasalquilado;
 		return precio;
 	}
+
+
+
+
 	
 	//Metodos
 	

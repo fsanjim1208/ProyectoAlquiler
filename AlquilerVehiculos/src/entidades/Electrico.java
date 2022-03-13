@@ -13,6 +13,7 @@ public abstract class Electrico extends Vehiculo implements Serializable{
 	
 	private int autonomia;
 	private int tiempoRecarga;
+	private int recargo=15;
 	
 	//Constructores
 	/**
@@ -48,6 +49,10 @@ public abstract class Electrico extends Vehiculo implements Serializable{
 	}
 	private int getTiempoRecarga() {
 		return tiempoRecarga;
+	}
+	
+	public int getRecargo() {
+		return recargo;
 	}
 	
 	//Metodos

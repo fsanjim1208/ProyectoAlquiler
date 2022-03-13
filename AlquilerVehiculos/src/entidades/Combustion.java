@@ -66,10 +66,13 @@ public abstract class Combustion extends Vehiculo implements Serializable{
 		return nivelEmisiones;
 	}
 
-	private void setNivelEmisiones(String nivelEmisiones) 
+	public void setNivelEmisiones(String nivelEmisiones) 
 	{
 		this.nivelEmisiones = nivelEmisiones;
 	}
+
+
+
 	
 	//Metodos
 	

@@ -31,8 +31,7 @@ public class Menus {
 		System.out.println("3 - Listado y Consultas");
 		System.out.println("4 - Salir");
 			
-		opcionelegida= lector.nextInt();
-//		lector.next();
+		opcionelegida= MetodosGenerales.PideDatosNumericos();
 		do 
 		{
 			if (opcionelegida==1)
@@ -56,7 +55,7 @@ public class Menus {
 				System.out.println("No valido");
 			}
 			
-		} while (opcionelegida!=4);
+		} while ((opcionelegida==1) && (opcionelegida==2) && (opcionelegida==3));
 	}
 
 	
@@ -81,8 +80,7 @@ public class Menus {
 		System.out.println("6 - Tipos de coches");
 		System.out.println("7 - Salir");
 		
-		opcionelegida= lector.nextInt();
-//		lector.next();
+		opcionelegida= MetodosGenerales.PideDatosNumericos();
 		do 
 		{
 			if (opcionelegida==1)
@@ -139,8 +137,7 @@ public class Menus {
 		System.out.println("2 - Devolver");
 		System.out.println("3 - Salir");
 		
-		opcionelegida= lector.nextInt();
-		lector.nextLine();
+		opcionelegida= MetodosGenerales.PideDatosNumericos();
 		do 
 		{
 			if (opcionelegida==1)
@@ -149,7 +146,11 @@ public class Menus {
 			}
 			else if (opcionelegida==2)
 			{
+				MetodosInterfazUsuario.MostrarAlquileresActivos(empresa);
 				
+				String codigoalquilerfinalizado=MetodosGenerales.PideDatosString("Introduza el codigo del alquiler que desea finalizar");
+				
+				empresa.getListaAlquileresActivos().remove(codigoalquilerfinalizado);
 			}			
 			else if (opcionelegida==3)
 			{
@@ -185,22 +186,37 @@ public class Menus {
 		System.out.println("8 - Listado de los Tipos de vehiculos");
 		System.out.println("9 - Salir");
 		
-		opcionelegida= lector.nextInt();
-		lector.nextLine();
 		do 
 		{
+			opcionelegida= MetodosGenerales.PideDatosNumericos();
+		
+		
 			if (opcionelegida==1) 
 			{
 				MetodosInterfazUsuario.MostrarAlquileres(empresa);
 				System.out.println("");
 			}
+			
 			else if (opcionelegida==2)
 			{
 				System.out.println(empresa.getListaEmpleado().values());
 			}
+			
 			else if (opcionelegida==3)
 			{
+				MetodosInterfazUsuario.MostrarOficinas(empresa);
 				
+				String codigooficina=MetodosGenerales.PideDatosString("Introduzca el codigo de la oficina de la que desea buscar");
+				
+				Oficina oficina2 = empresa.BuscaOficina(codigooficina);
+				
+				 for(int i = 0; i < empresa.getlistasVehiculosStockArrayList().size(); i++) 
+			        {
+			            if (empresa.getlistasVehiculosStockArrayList().get(i).getOficina()==oficina2)
+			            {
+			            	System.out.println(empresa.getlistasVehiculosStockArrayList().get(i));
+			            }
+			        }
 			}
 			else if (opcionelegida==4)
 			{
@@ -214,8 +230,17 @@ public class Menus {
 			}
 			else if (opcionelegida==6)
 			{
+				
+				System.out.println("VEhiculos");
 				MetodosInterfazUsuario.MostrarVehiculos(empresa);
 				System.out.println("");
+				System.out.println("Stock");
+				System.out.println("ArrayList Stock");
+				 
+				for(int i = 0; i < empresa.getlistasVehiculosStockArrayList().size(); i++) 
+			        {
+			         	System.out.println(empresa.getlistasVehiculosStockArrayList().get(i));
+			        }
 			}
 			else if (opcionelegida==7)
 			{
@@ -240,6 +265,11 @@ public class Menus {
 		
 	}
 
+	//MENU TERCIARIO (DEVOLUCIONES)
+	
+	
+	
+	
 	//MENUS TERCIRARIO (OFICINAS)
 	
 	/**
@@ -320,7 +350,9 @@ public class Menus {
 		System.out.println("1 - Añade Vehiculos");
 		System.out.println("2 - Modifica Vehiculos");
 		System.out.println("3 - Elimina Vehiculos");
+	
 		System.out.println("4 - Salir");
+		System.out.println("5 - Añade Vehiculos a stock");
 		
 		opcionelegida=lector.nextInt();
 		lector.nextLine();
@@ -345,14 +377,21 @@ public class Menus {
 		}
 		else if (opcionelegida==3)
 		{
-//			String matricula= MetodosGenerales.PideDatosString("¿Cual es la matricula del vehiculo que desea eliminar?");
-//			Vehiculo vehiculo = empresa.BuscaVehiculo(matricula);
-//			empresa.EliminaVehiculos(vehiculo);
-			empresa.getListaVehiculo().clear();
+			String matricula= MetodosGenerales.PideDatosString("¿Cual es la matricula del vehiculo que desea eliminar?");
+			Vehiculo vehiculo = empresa.BuscaVehiculo(matricula);
+			empresa.EliminaVehiculos(vehiculo);
 		}
 		else if (opcionelegida==4) 
 		{
 			MenuMantenimiento(empresa);
+		}
+		else if (opcionelegida==5) 
+		{
+			MetodosInterfazUsuario.MostrarVehiculos(empresa);
+			
+			String respuesta = MetodosGenerales.PideDatosString("Introduzca la matricula del vehiculo");
+			
+			empresa.AñadeVehiculosStockArrayList(empresa.getListaVehiculo().get(respuesta));
 		}
 	}
 	

@@ -11,6 +11,7 @@ public class CochesElectricos extends Electrico implements Serializable{
 	
 	private int Nplazas;
 	private String tipo;
+	private int preciobase=50;
 	
 	//Constructor
 	
@@ -61,10 +62,20 @@ public class CochesElectricos extends Electrico implements Serializable{
 	}
 
 	@Override
-	public double CalculaPrecio() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double CalculaPrecio(int DiasAlquilado) {
+		double precio=preciobase+((preciobase*getCategoria().getRecargo())/100);
+		if (getOficina().getOficinaAeropuerto())
+		{
+			precio=precio+((precio*getOficina().getRecargoSiAeoropuerto())/100);
+		}
+		precio=precio+((precio*getRecargo())/100);
+		
+		precio= precio * DiasAlquilado;
+		
+		return precio;
 	}
+
+
 
 //Metodos
 

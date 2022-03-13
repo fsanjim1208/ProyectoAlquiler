@@ -1,7 +1,11 @@
  package entidades;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import mismetodos.MetodosGenerales;
+import mismetodos.MetodosInterfazUsuario;
 
 public class Alquiler implements Serializable {
 	
@@ -17,6 +21,9 @@ public class Alquiler implements Serializable {
 	private GregorianCalendar fecha_alquila;
 	private GregorianCalendar fecha_devuelve;
 	
+	private int diasAlquilado;
+	private double precio;
+	
 	//CONSTRUCTOR
 
 	/**
@@ -30,7 +37,7 @@ public class Alquiler implements Serializable {
 	 * @param fecha_devuelve Objeto del tipo GregorianCalendar
 	 */
 	public Alquiler(String codigo, Cliente cliente, Empleado empleado, Vehiculo vehiculo_alqiuilado, Oficina lugar_alquiler,
-			GregorianCalendar fecha_alquila, GregorianCalendar fecha_devuelve) 
+			GregorianCalendar fecha_alquila, GregorianCalendar fecha_devuelve, int diaalquilado, double precio) 
 	{
 		this.setCodigo(codigo);
 		this.setCliente(cliente);
@@ -39,6 +46,8 @@ public class Alquiler implements Serializable {
 		this.setLugar_alquiler(lugar_alquiler);
 		this.setFecha_alquila(fecha_alquila);
 		this.setFecha_devuelve(fecha_devuelve);	
+		this.setDiasAlquilado(diaalquilado);
+		this.setPrecio(precio);
 	}
 	
 	public Alquiler(Alquiler alquiler)
@@ -122,6 +131,26 @@ public class Alquiler implements Serializable {
 	{
 		this.fecha_devuelve = fecha_devuelve;
 	}
+	
+	public int getDiasAlquilado() 
+	{ 
+		return diasAlquilado;
+	}
+	
+	private void setDiasAlquilado(int diasalquilado) 
+	{
+		this.diasAlquilado = diasalquilado;
+	}
+	
+	public double getPrecio() 
+	{ 
+		return precio;
+	}
+	
+	private void setPrecio(double precio) 
+	{
+		this.precio = precio;
+	}
 
 	/**
 	 *
@@ -129,7 +158,7 @@ public class Alquiler implements Serializable {
 	@Override
 	public String toString() {
 		return "El codigo del alquiler es " + codigo + ", lo realizó el cliente " + cliente + " y alquiló " +  vehiculo_alqiuilado + 
-				" en la oficina " + lugar_alquiler + " el dia "; 
+				"a un precio de "+precio; 
 				//+ fecha_alquila+ " de "+fecha_alquila+ " y lo devuelve el " + fecha_devuelve;
 	}
 	

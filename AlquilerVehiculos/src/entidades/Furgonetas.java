@@ -12,6 +12,7 @@ public class Furgonetas extends Combustion implements Serializable{
 	
 	private int CapacidadCarga;
 	private CarnetConducir CarnetRequerido;
+	int preciobase =70;
 	
 	//Constructores
 	/**
@@ -49,14 +50,20 @@ public class Furgonetas extends Combustion implements Serializable{
 	public void setCarnetRequerido(CarnetConducir carnetRequerido) {
 		CarnetRequerido = carnetRequerido;
 	}
-	
-	// TODO Acabar metodod para calcular el precio
+
 	@Override
-	public double CalculaPrecio() {
-		int preciobase =70;
-		double precio=preciobase+(preciobase*preciobase);
+	public double CalculaPrecio(int DiasAlquilado) {
+		double precio=preciobase+((preciobase*getCategoria().getRecargo())/100);
+		if (getOficina().getOficinaAeropuerto())
+		{
+			precio=precio+((precio*getOficina().getRecargoSiAeoropuerto())/100);
+		}
+		
+		precio= precio * DiasAlquilado;
+		
 		return precio;
 	}
+
 	
 	//metodos
 }

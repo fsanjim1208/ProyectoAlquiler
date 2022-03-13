@@ -11,6 +11,7 @@ public class Motocicletas extends Electrico implements Serializable{
 	
 	private int cilindrada;
 	private CarnetConducir CarnetRequerido;
+	int preciobase =10;
 	
 	//Constructores
 	/**
@@ -60,10 +61,20 @@ public class Motocicletas extends Electrico implements Serializable{
 	}
 
 	@Override
-	public double CalculaPrecio() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double CalculaPrecio(int DiasAlquilado) {
+		double precio=preciobase+((preciobase*getCategoria().getRecargo())/100);
+		if (getOficina().getOficinaAeropuerto())
+		{
+			precio=precio+((precio*getOficina().getRecargoSiAeoropuerto())/100);
+		}
+		precio=precio+((precio*getRecargo())/100);
+		
+		precio= precio * DiasAlquilado;
+		
+		return precio;
 	}
+
+
 	
 	//Metodos
 	
